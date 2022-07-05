@@ -1,0 +1,64 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+	</head>
+<!-- +----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| cate_num | int          | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(255) | NO   |     | NULL    |                |
+| sub      | int          | YES  | MUL | NULL    |                |
++----------+--------------+------+-----+---------+----------------+ -->
+
+	<body>
+		<!-- jsp@include file="haeder_nav.html" -->
+		<header th:insert="header_nav.html"></header>
+		<!-- request.getAttribute("test") -->
+		<h1>카테고리리스트 pageableList</h1>
+		<form action="/cate/list/1">
+			<div class="input-group">
+			  <select name="sort" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+			    <option selected>정렬할 칼럼</option>
+			    <option value="cateNum">cate_num</option>
+			    <option value="name">name</option>
+			    <option value="sub">sub</option>
+			  </select>
+			  <select name="desc" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+			    <option selected>정렬순서</option>
+			    <option value="desc">큰거부터(desc)</option>
+			    <option value="asc">작은거부터(asc)</option>
+			  </select >
+			  <button class="btn btn-outline-primary" type="submit">Button</button>
+			</div>
+		</form>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>cate_num</th>
+					<th>name</th>
+					<th>sub</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cate:${cateList}">
+					<td th:text="${cate.cateNum}"></td>
+					<td th:text="${cate.name}"></td>
+					<td th:text="${cate.sub}"></td>					
+				</tr>
+			</tbody>
+		</table>	
+		<p>
+			totalPage: <strong th:text="${cateList.totalPages}"></strong>
+			newPage: <strong th:text="${cateList.number+1}"></strong>
+			hasNext: <strong th:text="${cateList.hasNext}"></strong>
+			hasPrev: <strong th:text="${cateList.hasPrevious}"></strong>
+		</p>
+		pageStart pageEnd pageNow
+		<div th:with="totalPages=${cateList.totalPages}, nowPage=${cateList.number+1}, 
+						hasNext=${cateList.hasNext}, hasPrev=${cateList.hasPrevious},
+						startPage=${((nowPage-2)<=0)?1:nowPage-2},
+						endPage=${((nowPage+2)>=totalPages)?totalPages:nowPage+2}">
+			<nav th:insert="/pagination.html"></nav>
+		</div>
+	</body>
+</html>
