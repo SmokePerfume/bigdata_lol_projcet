@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.navbar > ul > li > a {
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+}
+
+.logo{
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.logo > a{
+	color: #fff;
+	text-decoration: none;
+}
+
+.logo > a:hover{
+	color: #10499C;
+}
+
+#header{
+	background-color: #1E262D;
+	width: auto;
+	height: auto;
+}
