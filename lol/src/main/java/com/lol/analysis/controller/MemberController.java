@@ -1,13 +1,17 @@
 package com.lol.analysis.controller;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lol.analysis.repository.MemberRepository;
@@ -55,4 +59,39 @@ public class MemberController {
 		model.setViewName("/member/signup");
 		return model;
 	}
+	
+	@PostMapping("/signup.do")
+    public String signup(MemberVo memberVo,HttpSession session) {
+        boolean insert=false;
+        try {
+            Optional<MemberVo> memOption=mr.findById(memberVo.getId());
+            if(memOption.isEmpty()) {
+                MemberVo insertMem=mr.save(memberVo);
+                if(insertMem!=null) {insert=true;} //회원가입 성공
+            }else {
+                session.setAttribute("msg", "존재하는 아이디 입니다.");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            session.setAttribute("msg", "Email이나 phone이 존재합니다.");
+        }
+        if(insert) {
+            return "redirect:/";
+        }else {
+            return "redirect:/member/signup.do";
+        }
+    }
+	@GetMapping("/ajax/findId/{id}")
+    public @ResponseBody Optional<MemberVo> findId(@PathVariable String id) {
+        return mr.findById(id);
+    }
+    @GetMapping("/ajax/findEmail/{email}")
+    public @ResponseBody Optional<MemberVo> findEmail(@PathVariable String email) {
+        return mr.findByEmail(email);
+    }
+    
+    @GetMapping("/ajax/findPhone/{phone}")
+    public @ResponseBody Optional<MemberVo> findPhone(@PathVariable String phone) {
+        return mr.findByPhone(phone);
+    }
 }

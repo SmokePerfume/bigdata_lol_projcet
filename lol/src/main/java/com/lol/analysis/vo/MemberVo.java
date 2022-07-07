@@ -19,6 +19,7 @@ public class MemberVo {
 	private int age;
 	private String gender;
 	private Date regdate;
+	private int grade;
 	public String getId() {
 		return id;
 	}
@@ -67,11 +68,18 @@ public class MemberVo {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 	@Override
 	public String toString() {
 		return "MemberVo [id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", phone=" + phone
-				+ ", age=" + age + ", gender=" + gender + ", regdate=" + regdate + "]";
+				+ ", age=" + age + ", gender=" + gender + ", regdate=" + regdate + ", grade=" + grade + "]";
 	}
+	
 	
 	
 

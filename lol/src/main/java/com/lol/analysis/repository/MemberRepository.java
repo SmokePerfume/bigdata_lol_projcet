@@ -1,5 +1,7 @@
 package com.lol.analysis.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
@@ -12,5 +14,9 @@ public interface MemberRepository extends CrudRepository<MemberVo, String>{
 	
 	//로그인 id, pw 확인
 	public MemberVo findByIdAndPw(String id, String pw);
+	
+	//ajax로 중복 검사
+	public Optional<MemberVo> findByEmail(String email);
+    public Optional<MemberVo> findByPhone(String phone);
 
 }
