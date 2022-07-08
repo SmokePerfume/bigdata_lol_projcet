@@ -58,7 +58,17 @@ body{
   	text-shadow: 0px 0px 5px #fff, 0px 0px 7px #fff;
   	animation-iteration-count: 1;
 }
-
+footer {
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    width: 100%;
+    height: 100px; /* footer의 높이 */
+    background-color:gray;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
 @keyframes blur {
   from {
     text-shadow:0px 0px 10px #fff,
