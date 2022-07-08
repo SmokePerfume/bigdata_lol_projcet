@@ -5,12 +5,17 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,13 +28,11 @@ public class MemberController {
 	@Autowired
 	MemberRepository mr;
 	
-	@GetMapping("/list.do")
-	public String list(Model model) {
-		Iterable<MemberVo> memList = mr.findAll();
-		model.addAttribute("memList", memList);
-		System.out.println(memList);
-		return "member/list";
-	}
+	/*
+	 * @GetMapping("/list.do") public String list(Model model) { Iterable<MemberVo>
+	 * memList = mr.findAll(); model.addAttribute("memList", memList);
+	 * System.out.println(memList); return "member/list"; }
+	 */
 	
 	@GetMapping("/login.do")
 	public ModelAndView login(ModelAndView model) {
@@ -93,5 +96,22 @@ public class MemberController {
     @GetMapping("/ajax/findPhone/{phone}")
     public @ResponseBody Optional<MemberVo> findPhone(@PathVariable String phone) {
         return mr.findByPhone(phone);
+    }
+    
+    @GetMapping("/list.do/{page}")
+    public String pageableList( @PathVariable int page,
+                                @RequestParam(defaultValue = "regdate") String sort,
+                                @RequestParam(defaultValue = "desc") String desc, 
+                                Model model) {
+        int size=5;
+        Pageable pageable=null;
+        if(desc.equals("desc")){
+            pageable=PageRequest.of(page-1, size,Sort.by(sort).descending());
+        }else if(desc.equals("asc")){
+            pageable=PageRequest.of(page-1, size,Sort.by(sort).ascending());
+        }
+        Page<MemberVo> memberList=mr.findAll(pageable);
+        model.addAttribute("memberList",memberList);
+        return "member/pageableList";
     }
 }
