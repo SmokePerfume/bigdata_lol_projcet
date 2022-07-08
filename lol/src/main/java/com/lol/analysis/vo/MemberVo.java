@@ -6,8 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity
 @Table(name = "member")
+@DynamicInsert  //insert시 null은 제외
+@DynamicUpdate  //insert시 null은 제외
 public class MemberVo {
 	
 	@Id

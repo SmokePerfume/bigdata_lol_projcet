@@ -64,7 +64,7 @@ public class MemberController {
     public String signup(MemberVo memberVo,HttpSession session) {
         boolean insert=false;
         try {
-            Optional<MemberVo> memOption=mr.findById(memberVo.getId());
+            Optional<MemberVo> memOption=mr.findById(memberVo.getId()); //id중복확인
             if(memOption.isEmpty()) {
                 MemberVo insertMem=mr.save(memberVo);
                 if(insertMem!=null) {insert=true;} //회원가입 성공
