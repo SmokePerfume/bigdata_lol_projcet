@@ -2,6 +2,7 @@ package com.lol.analysis.vo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,8 +12,8 @@ import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Table(name = "member")
-@DynamicInsert  //insert시 null은 제외
-@DynamicUpdate  //insert시 null은 제외
+@DynamicInsert
+@DynamicUpdate
 public class MemberVo {
 	
 	@Id
@@ -23,7 +24,9 @@ public class MemberVo {
 	private String phone;
 	private int age;
 	private String gender;
+	@Column(insertable=true, updatable=false)
 	private Date regdate;
+	@Column(insertable=false, updatable=true)
 	private int grade;
 	public String getId() {
 		return id;

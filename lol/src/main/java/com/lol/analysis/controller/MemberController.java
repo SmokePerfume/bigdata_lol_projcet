@@ -36,7 +36,7 @@ public class MemberController {
 	
 	@GetMapping("/login.do")
 	public ModelAndView login(ModelAndView model) {
-		model.setViewName("/member/login");
+		model.setViewName("member/login");
 		return model;
 	}
 	
@@ -47,7 +47,8 @@ public class MemberController {
 			session.setAttribute("memberVo", memberVo);
 			return "redirect:/";
 		}else {
-			return "redirect:/member/login";
+			session.setAttribute("msg", "로그인 실패");
+			return "redirect:/member/login.do";
 		}
 	}
 	
@@ -59,7 +60,7 @@ public class MemberController {
 	
 	@GetMapping("/signup.do")
 	public ModelAndView signup(ModelAndView model) {
-		model.setViewName("/member/signup");
+		model.setViewName("member/signup");
 		return model;
 	}
 	
@@ -113,5 +114,23 @@ public class MemberController {
         Page<MemberVo> memberList=mr.findAll(pageable);
         model.addAttribute("memberList",memberList);
         return "member/pageableList";
+    }
+    
+    @GetMapping("/update.do")
+	public ModelAndView update(ModelAndView model) {
+		model.setViewName("member/update");
+		return model;
+	}
+    
+	@PostMapping("/update.do")
+    public String update(MemberVo MemberVo) {
+        mr.save(MemberVo);
+        return "redirect:/member/list.do/1";
+    }
+	
+    @PostMapping("/delete.do")
+    public String delete(MemberVo memberVo) {
+        mr.delete(memberVo);
+        return "redirect:/member/list.do/1";
     }
 }

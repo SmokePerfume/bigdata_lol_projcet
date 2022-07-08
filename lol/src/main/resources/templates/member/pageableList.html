@@ -45,7 +45,7 @@ th, td {
                </form>
            </div>
            <div class="memHeaderEl">
-                   <button type="button" onclick="location.href='#'" class="btn btn-outline-dark navbar-brand">회원 등록</button>
+                   <button type="button" onclick="location.href='../signup.do'" class="btn btn-outline-dark navbar-brand">회원 등록</button>
            </div>
            <div class="memHeaderEl">
                <form class="d-flex">
@@ -83,7 +83,7 @@ th, td {
 				<td th:if="${member.grade}==1" th:text="Admin"></td>
 				<td th:if="${member.grade}==2" th:text="User"></td>
 				<td>
-                     <form action="/member/insert.do" method="POST">
+                     <form action="/member/update.do" method="GET">
                          <input type="hidden" name="id" th:value="${member.id}">
                          <button class="btn btn-outline-primary" type="submit">수정</button>
                      </form>
@@ -111,7 +111,7 @@ th, td {
 					hasNext=${memberList.hasNext}, hasPrev=${memberList.hasPrevious},
 					startPage=${((nowPage-2)<=0)?1:nowPage-2},
 					endPage=${((nowPage+2)>=totalPages)?totalPages:nowPage+2}">
-		<nav th:insert="/pagination.html"></nav>
+		<nav th:insert="pagination.html"></nav>
 	</div>
 </body>
 </html>
