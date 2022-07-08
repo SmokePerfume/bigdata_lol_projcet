@@ -13,37 +13,36 @@
 		<form name="signup" class="signup-form" action="/member/signup.do" method="post">
 			<div class="signup-el">
 				<label for="inputId">아이디:</label>
-				<input id="inputId" type="text" name="id" value="" placeholder="아이디 입력">
+				<input id="inputId" type="text" name="id" value="test0000" placeholder="아이디 입력">
 			</div>
 			<span id="checkId">중복체크중입니다.</span>
 			<div class="signup-el">
 				<label for="inputPw">pw:</label>
-				<input id="inputPw" type="text" name="pw" value="1234">
+				<input id="inputPw" type="text" name="pw" value="0000">
 			</div>
-			<span id="checkPw">길이가 4이상</span>
 			<div class="signup-el">
 				<label for="inputPwCheck">pw:</label>
-				<input id="inputPwCheck" type="text" name="pw_check" value="">
+				<input id="inputPwCheck" type="password" name="pw_check" value="0000">
 			</div>
-			<span id="checkPwCheck">중복체크중입니다.</span>
+			<span id="checkPw">중복체크중입니다.</span>
 			<div class="signup-el">
 				<label for="inputName">이름:</label>
-				<input id="inputName" type="text" name="name" value="길동">
+				<input id="inputName" type="text" name="name" value="test0000">
 			</div>
 			<div class="signup-el">
 				<label for="inputEmail">이메일:</label>
-				<input id="inputEmail" type="text" name="email" value="hong@gmail.com">
+				<input id="inputEmail" type="text" name="email" value="test0000@gmail.com">
 			</div>
 			<span id="checkEmail">중복체크중입니다.</span>
 			<div class="signup-el">
 				<label for="inputPhone">폰:</label>
-				<input id="inputPhone" type="text" name="phone" value="011-1111-1234">
+				<input id="inputPhone" type="text" name="phone" value="011-0000-0000">
 			</div>
 			<span id="checkPhone">중복체크중입니다.</span>
 			
 			<div class="signup-el">
 				<label for="inputAge">나이:</label>
-				<input id="inputAge" type="text" name="age" value="19">
+				<input id="inputAge" type="text" name="age" value="26">
 			</div>
 			
 			<div class="signup-el">
@@ -52,7 +51,7 @@
 			</div>
 			<!-- 아래두 좀 변경 -->
 			<div class="btn-group">
-				<button class="btn-anime btn1" type="submit">회원가입</button>
+				<button id="signupbtn" class="btn-anime btn1" type="submit">회원가입</button>
 				<button class="btn-anime btn2" type="reset">초기화</button>
 				<button class="btn-anime btn2" type="button" onclick="history.back()">뒤로가기</button>
 			</div>

@@ -2,6 +2,7 @@ const signup=document.forms["signup"];
 const checkId=document.getElementById("checkId");
 const checkPhone=document.getElementById("checkPhone");
 const checkEmail=document.getElementById("checkEmail");
+const signupbtn=document.getElementById("signupbtn");
 
 signup["id"].addEventListener("blur",async (e)=>{
 	let v=e.target.value;
@@ -73,3 +74,18 @@ signup["email"].addEventListener("blur",async (e)=>{
 	}
 })
 
+signup["pw_check"].addEventListener("blur",(e)=>{
+	let pw=signup["pw"].value;
+	let pw_ch=e.target.value;
+	if(pw==pw_ch){
+			checkPw.classList.remove("text-danger");
+			checkPw.classList.add("text-primary");
+			checkPw.innerText="비밀번호가 일치합니다.";
+			signupbtn.disabled=false;
+	}else{
+			checkPw.classList.remove("text-primary");
+			checkPw.classList.add("text-danger");
+			checkPw.innerText="비밀번호가 다릅니다.(회원가입 비활성)";
+			signupbtn.disabled=true;
+	}
+})
