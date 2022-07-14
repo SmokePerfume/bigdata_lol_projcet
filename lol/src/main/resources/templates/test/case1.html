@@ -4,20 +4,94 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+body{
+background: #808080 !important;
+}
+.inputdata{
+	margin:10px !important;
+	padding : 5px;
+	border: 1px solid #000;
+	border-radius: 5px;
+	height: 600px;
+	display:flex;
+	justify-content: center;
+}
+.signup-el{
+	margin:10px;
+	width:100%;
+}
+.resultGraph{
+	margin:10px !important;
+	padding : 5px;
+	border: 1px solid #000;
+	border-radius: 5px;
+	width:800px;
+}
+@media (max-width:1050px) {
+    main{
+        flex-direction: column;
+    }
+}
+main{
+	display:flex;
+}
+</style>
 <body>
 	<!-- 상단 메뉴바 -->
 	<header th:insert="header_nav.html"></header>
-	<h1>CASE 1 화면입니다</h1>
-	<div class="inputdata">
+	<main>
+	<div class="inputdata container alert alert-light">
 		<form action="">
-			<p>입력 화면</p>
-			<input>입력 폼</input>
+		<h2>입력 폼</h2>
+			<div class="signup-el">
+				<label for="inputdata1">데이터1:</label>
+				<input id="inputdata1" type="text" name="id" value="testdata1" placeholder="데이터">
+			</div>
+			<div class="signup-el">
+				<label for="inputdata2">데이터2:</label>
+				<input id="inputdata2" type="text" name="id" value="testdata2" placeholder="데이터">
+			</div>
+			<div class="signup-el">
+				<label for="inputdata3">데이터3:</label>
+				<input id="inputdata3" type="text" name="id" value="testdata3" placeholder="데이터">
+			</div>
+			<div class="signup-el">
+				<label for="inputdata4">데이터4:</label>
+				<input id="inputdata4" type="text" name="id" value="testdata4" placeholder="데이터">
+			</div>
+			<div class="signup-el">
+				<label for="inputdata5">데이터5:</label>
+				<input id="inputdata5" type="text" name="id" value="testdata5" placeholder="데이터">
+			</div>
+			<div class="signup-el">
+				<label for="inputdata6">데이터6:</label>
+				<input id="inputdata6" type="text" name="id" value="testdata6" placeholder="데이터">
+			</div>
+			<div class="signup-el">
+				<label for="inputdata6">데이터6:</label>
+				<input id="inputdata6" type="text" name="id" value="testdata6" placeholder="데이터">
+			</div>
+			<div class="signup-el">
+				<label for="inputdata6">데이터6:</label>
+				<input id="inputdata6" type="text" name="id" value="testdata6" placeholder="데이터">
+			</div>
+			<div class="signup-el">
+				<label for="inputdata6">데이터6:</label>
+				<input id="inputdata6" type="text" name="id" value="testdata6" placeholder="데이터">
+			</div>
+						<!-- 아래두 좀 변경 -->
+			<div class="group-btn">
+				<button class="btn btn-primary" type="submit">예측하기</button>
+				<button class="btn btn-primary" type="button" onclick="history.back()">뒤로가기</button>
+			</div>
 		</form>
 	</div>
-	<div class="resultGraph" style="width:800px;">
+	<div class="resultGraph container alert alert-light">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 		<canvas id="radar-chart" width="250" height="250"></canvas>
 	</div>
+	</main>
 
 </body>
 <script type="text/javascript">
