@@ -1,0 +1,94 @@
+@charset "UTF-8";
+h1{
+	width:500px;
+	text-align : center;
+	margin: 10 auto;
+}
+.signup-main{
+}
+input:read-only {background-color: pink;}  
+.signup-form{ 
+	display:flex;
+	flex-direction: column;
+    justify-content: flex-start;
+    margin:20px;
+}
+.signup-el{
+	display:flex;
+	width:400px;
+	height:30px;
+	margin:10px 0px 0px 0px;
+	justify-content: space-between;
+	align-items: center
+}
+.signup-el>input{
+	width:300px;
+}
+.signup-form>span{
+	display:flex;
+	justify-content: flex-end
+}
+.btn-group{
+	display:flex;
+	justify-content: space-between;
+	margin:20px 0px;
+}
+/*버튼 비율*/
+.btn1{
+	width:48%;
+}
+.btn2{
+	width:24%;
+}
+/*버튼 애니메이션*/
+button,
+button::after {
+   	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+  	-o-transition: all 0.3s; 
+	transition: all 0.3s;
+	cursor:pointer;
+}
+button {
+  background: none;
+  border: 2px solid #fff;
+  border-radius: 10px; 
+  color: #fff;
+  display: block;
+  font-weight: bold;
+  height:50px;
+  position: relative;
+}
+button::before,
+button::after { 
+  background: #fff;
+  border-radius: 10px;
+  content: '';
+  position: absolute;
+  z-index: -1; 
+}
+
+button:hover {
+  color: #000;
+}
+.btn-anime::before {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.btn-anime::after {
+  background: #000;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.btn-anime:hover:after {
+  height: 0;
+  left: 50%;
+  top: 50%;
+  width: 0;
+}

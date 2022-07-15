@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 	<title>회원수정</title>
 	<script src="/public/js/member/update.js" defer="defer"></script>
-	<link type="text/css" rel="stylesheet" href="/public/css/member/signup.css">
+	<link type="text/css" rel="stylesheet" href="/public/css/member/update.css">
 </head>
 <body>
 	<header th:insert="header_nav.html"></header>
@@ -17,13 +17,13 @@
 			<span id="checkId">(변경 불가)</span>
 			<div class="signup-el">
 				<label for="inputPw">pw:</label>
-				<input id="inputPw" type="text" name="pw" th:value="${memberVo['pw']}" readonly>
+				<input id="inputPw" type="text" name="pw" th:value="${memberVo['pw']}" >
 			</div>
 			<div class="signup-el">
 				<label for="inputPwCheck">pw:</label>
-				<input id="inputPwCheck" type="password" name="pw_check" th:value="${memberVo['pw']}" readonly>
+				<input id="inputPwCheck" type="password" name="pw_check" th:value="${memberVo['pw']}" >
 			</div>
-			<span id="checkPw">(변경 불가)</span>
+			<span id="checkPw">(변경 가능)</span>
 			<div class="signup-el">
 				<label for="inputName">이름:</label>
 				<input id="inputName" type="text" name="name" th:value="${memberVo['name']}">
