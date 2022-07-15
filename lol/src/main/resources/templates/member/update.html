@@ -5,7 +5,6 @@
 	<script src="/public/js/member/update.js" defer="defer"></script>
 	<link type="text/css" rel="stylesheet" href="/public/css/member/signup.css">
 </head>
-
 <body>
 	<header th:insert="header_nav.html"></header>
 	<h1>회원수정</h1>
@@ -13,50 +12,50 @@
 		<form name="signup" class="signup-form" action="/member/update.do" method="post">
 			<div class="signup-el">
 				<label for="inputId">아이디:</label>
-				<input id="inputId" type="text" name="id" value="test0000" placeholder="아이디 입력" readonly>
+				<input id="inputId" type="text" name="id" th:value="${memberVo['id']}" placeholder="아이디 입력" readonly>
 			</div>
 			<span id="checkId">(변경 불가)</span>
 			<div class="signup-el">
 				<label for="inputPw">pw:</label>
-				<input id="inputPw" type="text" name="pw" value="0000" readonly>
+				<input id="inputPw" type="text" name="pw" th:value="${memberVo['pw']}" readonly>
 			</div>
 			<div class="signup-el">
 				<label for="inputPwCheck">pw:</label>
-				<input id="inputPwCheck" type="password" name="pw_check" value="0000" readonly>
+				<input id="inputPwCheck" type="password" name="pw_check" th:value="${memberVo['pw']}" readonly>
 			</div>
 			<span id="checkPw">(변경 불가)</span>
 			<div class="signup-el">
 				<label for="inputName">이름:</label>
-				<input id="inputName" type="text" name="name" value="test0000">
+				<input id="inputName" type="text" name="name" th:value="${memberVo['name']}">
 			</div>
 			<div class="signup-el">
 				<label for="inputEmail">이메일:</label>
-				<input id="inputEmail" type="text" name="email" value="test0000@gmail.com" readonly>
+				<input id="inputEmail" type="text" name="email" th:value="${memberVo['email']}" readonly>
 			</div>
 			<span id="checkEmail">(변경 불가)</span>
 			<div class="signup-el">
 				<label for="inputPhone">폰:</label>
-				<input id="inputPhone" type="text" name="phone" value="011-0000-0000" readonly>
+				<input id="inputPhone" type="text" name="phone" th:value="${memberVo['phone']}" readonly>
 			</div>
 			<span id="checkPhone">(변경 불가)</span>
 			
 			<div class="signup-el">
 				<label for="inputAge">나이:</label>
-				<input id="inputAge" type="text" name="age" value="26">
+				<input id="inputAge" type="text" name="age" th:value="${memberVo['age']}">
 			</div>
 			
 			<div class="signup-el">
 				<label for="inputGender">성별:</label>
 				<select name="gender" id="inputGender">
-                      <option value="남자" selected>남자</option>
-                      <option value="여자">여자</option>
+                      <option value="남자" th:selected="${memberVo['gender']} == '남자'">남자</option>
+                      <option value="여자" th:selected="${memberVo['gender']} == '여자'">여자</option>
             	</select>
 			</div>
 			
 			
 			<div class="signup-el">
 				<label for="inpuGrade">등급:</label>
-				<input id="inputGrade" type="text" name="grade" value="2">
+				<input id="inputGrade" type="text" name="grade" th:value="${memberVo['grade']}">
 			</div>
 			<!-- 아래두 좀 변경 -->
 			<div class="btn-group">

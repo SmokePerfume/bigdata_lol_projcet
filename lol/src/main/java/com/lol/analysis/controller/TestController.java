@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 
 
@@ -15,6 +17,7 @@ import org.apache.commons.exec.PumpStreamHandler;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,9 +25,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/test")
 public class TestController {
 	
-	@GetMapping("/case1")
-	public ModelAndView login(ModelAndView model) throws Exception{
+	@GetMapping("/case1.do")
+	public ModelAndView case2(ModelAndView model){
 		model.setViewName("test/case1");
+
+		return model;
+	}
+	
+	@PostMapping("/case1.do")
+	public String case1(String data1, String data2) throws Exception{
 		////////////////
 		System.out.println("Python3 Call");
         String[] command = new String[4];
@@ -39,9 +48,7 @@ public class TestController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-		
-		////////////
-		return model;
+        return "redirect:/";
 	}
 
 	

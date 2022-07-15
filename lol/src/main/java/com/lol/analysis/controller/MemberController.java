@@ -117,14 +117,16 @@ public class MemberController {
     }
     
     @GetMapping("/update.do")
-	public ModelAndView update(ModelAndView model) {
-		model.setViewName("member/update");
-		return model;
+	public String update(Model model, @RequestParam(name="id") String id) {
+        Optional<MemberVo> memOption = mr.findById(id);
+        MemberVo memberVo=memOption.get();
+        model.addAttribute("memberVo",memberVo);
+		return "member/update";
 	}
     
 	@PostMapping("/update.do")
-    public String update(MemberVo MemberVo) {
-        mr.save(MemberVo);
+    public String update(MemberVo memberVo) {
+        mr.save(memberVo);
         return "redirect:/member/list.do/1";
     }
 	

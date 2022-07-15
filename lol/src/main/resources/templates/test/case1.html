@@ -42,7 +42,7 @@ main{
 	<header th:insert="header_nav.html"></header>
 	<main>
 	<div class="inputdata container alert alert-light">
-		<form action="">
+		<form name="predictForm" action="/test/case1.do" method="post">
 		<h2>입력 폼</h2>
 			<div class="signup-el">
 				<label for="inputdata1">데이터1:</label>
@@ -82,7 +82,7 @@ main{
 			</div>
 						<!-- 아래두 좀 변경 -->
 			<div class="group-btn">
-				<button class="btn btn-primary" type="submit">예측하기</button>
+				<button id="predictBtn" class="btn btn-primary" type="submit">예측하기</button>
 				<button class="btn btn-primary" type="button" onclick="history.back()">뒤로가기</button>
 			</div>
 		</form>
