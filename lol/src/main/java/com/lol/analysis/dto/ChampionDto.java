@@ -10,15 +10,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-@Data
 @Entity
 @Table (name = "champion")
+@Data
 public class ChampionDto {
+	
 	@Id 
 	private int code;
+	
 	private String name;
+	
 	@Column(name = "e_name")
 	private String eName;
+	
 	@Column(name = "c_img")
 	private String cImg;
 	
