@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="/public/css/champs_list.css" rel="stylesheet">
+<link rel="icon" href="/public/img/favicon.ico" type="image/x-icon">
+<title>Champion List</title>
+</head>
+<body>
+<header th:insert="header_nav.html"></header>
+<video id="video" preload="auto" autoplay="autoplay" loop="loop" muted="muted">
+	<source src="/public/videos/champs_list_index.mp4">
+</video>
+<div class="content-container" id="main">
+	<aside>
+		<div id="search_title">
+			<div id="search_h1">
+				<h1>CHAMPION LIST</h1>
+			</div>
+			<div id="search_champ">
+				<input type="text" placeholder="챔피언 검색(가렌, ㄱㄹ, ...)">
+			</div>
+		</div>
+		<nav id="search_detail">
+			<a th:href="@{/champs/detail/champ_code/{code}(code = ${cp.code})}" th:each="cp:${cpList}">
+				<img th:alt="${cp.name}" th:src="${cp.cImg}">
+				<span th:text="${cp.name}"></span>
+			</a>
+		</nav>
+	</aside>
+	<div>
+		<div>
+			<h1>CHAMPION TIRE</h1>
+		</div>
+		<ul class="nav nav-tabs flex justify-content-evenly" id="myTab" role="tablist">
+		  <li class="nav-item" role="presentation">
+		    <button class="nav-link active" id="TierTop" data-bs-toggle="tab" data-bs-target="#top" type="button" role="tab" aria-controls="top" aria-selected="true">탑</button>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <button class="nav-link" id="TierJungle" data-bs-toggle="tab" data-bs-target="#jungle" type="button" role="tab" aria-controls="jungle" aria-selected="false">정글</button>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <button class="nav-link" id="TierMiddle" data-bs-toggle="tab" data-bs-target="#middle" type="button" role="tab" aria-controls="middle" aria-selected="false">미드</button>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <button class="nav-link" id="TierBottom" data-bs-toggle="tab" data-bs-target="#bottom" type="button" role="tab" aria-controls="bottom" aria-selected="false">바텀</button>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <button class="nav-link" id="TierSupport" data-bs-toggle="tab" data-bs-target="#support" type="button" role="tab" aria-controls="support" aria-selected="false">서포터</button>
+		  </li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+		  <div class="tab-pane fade show active" id="top" role="tabpanel" aria-labelledby="top-tab">
+		  	<table class="table">
+		  		<thead>
+		  			<tr>
+		  				<th>챔피언</th>
+		  				<th>승률</th>
+		  				<th>픽률</th>
+		  				<th>밴률</th>
+		  				<th>티어</th>
+		  			</tr>
+		  		</thead>
+		  		<tbody>
+		  			<tr class="cl" th:each="ct:${ctList}">
+		  				<td class="td1">
+		  					<a th:href="@{/champs/detail/champ_code/{code}(code = ${ct.code})}">
+		  						<input type="hidden" th:value="${ct.code}">
+		  						<img th:alt="${ct.name}" th:src="${ct.cpdto?.cImg}">
+		  						<span th:text="${ct.cpdto?.name}"></span>
+		  					</a>
+		  				</td>
+		  				<td><span th:text="${ct.winLate}"></span></td>
+		  				<td><span th:text="${ct.pickLate}"></span></td>
+		  				<td><span th:text="${ct.banLate}"></span></td>
+		  				<td><img th:src="${ct.tier}"></td>
+		  			</tr>
+		  		</tbody>
+		  	</table>
+		  </div>
+		  <div class="tab-pane fade" id="jungle" role="tabpanel" aria-labelledby="jungle-tab">
+		  	<table class="table">
+		  		<thead>
+		  			<tr>
+		  				<th>챔피언</th>
+		  				<th>승률</th>
+		  				<th>픽률</th>
+		  				<th>밴률</th>
+		  				<th>티어</th>
+		  			</tr>
+		  		</thead>
+		  		<tbody>
+		  			<tr class="cl" th:each="cj:${cjList}">
+		  				<td class="td1">
+		  					<a th:href="@{/champs/detail/champ_code/{code}(code = ${cj.code})}">
+		  						<input type="hidden" th:value="${cj.code}">
+		  						<img th:alt="${cj.name}" th:src="${cj.cpdto?.cImg}">
+		  						<span th:text="${cj.cpdto?.name}"></span>
+		  					</a>
+		  				</td>
+		  				<td><span th:text="${cj.winLate}"></span></td>
+		  				<td><span th:text="${cj.pickLate}"></span></td>
+		  				<td><span th:text="${cj.banLate}"></span></td>
+		  				<td><img th:src="${cj.tier}"></td>
+		  			</tr>
+		  		</tbody>
+		  	</table>
+		  </div>
+		  <div class="tab-pane fade" id="middle" role="tabpanel" aria-labelledby="middle-tab">CCC</div>
+		  <div class="tab-pane fade" id="bottom" role="tabpanel" aria-labelledby="bottom-tab">DDD</div>
+		  <div class="tab-pane fade" id="support" role="tabpanel" aria-labelledby="support-tab">EEE</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
