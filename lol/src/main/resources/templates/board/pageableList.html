@@ -13,7 +13,7 @@
 			  <select name="sort" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
 			    <option selected>정렬할 칼럼</option>
 			    <option value="title">제목</option>
-			    <option value="memberId">글쓴이</option>
+			    <option value="id">글쓴이</option>
 			    <option value="postTime">날짜</option>
 			  </select>
 			  <select name="desc" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
@@ -25,35 +25,35 @@
 			  <button class="btn btn-outline-primary" type="submit">Button</button>
 			</div>
 		</form>
-		<a href="/member/inserted">글쓰기</a>
+		<a href="/board/inserted">글쓰기</a>
 		
 		<table class="table">
 			<thead>
 				<tr>
+					<th>글 번호</th>
 					<th>제목</th>
 					<th>글쓴이</th>
 					<th>날짜</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="member:${memberList}">
-				
-					<td><a th:text="${member.title}" th:href="@{/member/board/view(id=${member.Num})}"></a></td>
-					<td th:text="${member.memberId}"></td>
-					<td th:text="${member.postTime}"></td>	
+				<tr th:each="board:${boardList}">
+					<td th:text="${board.bno}"></td>
+					<td><a th:text="${board.title}" th:href="@{/board/board/view(id=${board.bno})}"></a></td>
+					<td th:text="${board.id}"></td>
+					<td th:text="${board.postTime}"></td>	
 					
 					
 				</tr>
 			</tbody>
 		</table>	
 		
-		<div th:with="	totalPages=${memberList.totalPages}, 
-						nowPage=${memberList.number+1}, 
-						hasNext=${memberList.hasNext}, 
-						hasPrev=${memberList.hasPrevious},
+		<div th:with="	totalPages=${boardList.totalPages}, 
+						nowPage=${boardList.number+1}, 
+						hasNext=${boardList.hasNext}, 
+						hasPrev=${boardList.hasPrevious},
 						startPage=${((nowPage-3)<=0)?1:nowPage-3},
 						endPage=${((nowPage+3)>=totalPages)?totalPages:nowPage+3
-						
 						}
 						">
 			<nav th:insert="/pagination.html"></nav>					
