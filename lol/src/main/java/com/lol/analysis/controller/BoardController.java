@@ -1,17 +1,8 @@
 package com.lol.analysis.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Optional;
 
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,14 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.lol.analysis.repository.BoardRepository;
 import com.lol.analysis.repository.MemberRepository;
-import com.lol.analysis.service.BoardService2;
 import com.lol.analysis.vo.BoardVo;
-import com.lol.analysis.vo.MemberVo;
 
 
 
@@ -46,26 +33,40 @@ public class BoardController {
 	@Autowired
 	BoardRepository br;
 	
-	@Autowired
-	private BoardService2 boardService2;
-
+    @GetMapping("/list.do/{page}")
+    public String pageableList( @PathVariable int page,
+                                @RequestParam(defaultValue = "postdate") String sort,
+                                @RequestParam(defaultValue = "desc") String desc, 
+                                Model model) {
+        int size=5;
+        Pageable pageable=null;
+        if(desc.equals("desc")){
+            pageable=PageRequest.of(page-1, size,Sort.by(sort).descending());
+        }else if(desc.equals("asc")){
+            pageable=PageRequest.of(page-1, size,Sort.by(sort).ascending());
+        }
+        Page<BoardVo> boardList=br.findAll(pageable);
+        model.addAttribute("boardList",boardList);
+        return "board/pageableList";
+    }
+    
 	
 	@GetMapping("/insert.do")
 	public String insert() {
-		return "/member/inser";
+		return "/board/insert";
 	}
-	
-	@PostMapping("/inserted")
-	public String insert(String title,String memberId,String contents){
-		
-		    BoardVo board=new BoardVo();
-			board.setMemberId(memberId);
-			board.setTitle(title);
-			board.setContents(contents);
-			br.save(board); //기존의 값이 없으면 insert  
-		
-		return "redirect:/member/list/1";
-	}
+//	
+//	@PostMapping("/inserted")
+//	public String insert(String title,String memberId,String contents){
+//		
+//		    BoardVo board=new BoardVo();
+//			board.setMemberId(memberId);
+//			board.setTitle(title);
+//			board.setContents(contents);
+//			br.save(board); //기존의 값이 없으면 insert  
+//		
+//		return "redirect:/member/list/1";
+//	}
 	
 //	@GetMapping("/board/view")
 //	public String boardView(Model model, Integer id) {
