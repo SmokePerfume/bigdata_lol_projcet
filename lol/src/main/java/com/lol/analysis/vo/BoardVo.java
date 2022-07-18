@@ -31,98 +31,55 @@ import org.hibernate.annotations.Formula;
 
 @Entity
 @Table(name = "board")
-
+@DynamicInsert
+@DynamicUpdate
 public class BoardVo {
 	
 	@Id
-	@Column(name="num")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Num;
-	@Column(name="member_id")
-	private String memberId;
+	private int bno;
+	private String id;
 	private String title;
-	private String contents;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@Column(name="post_time", insertable =false,updatable = false)
-	private Date postTime;
-	private int score;
-	
-	
-	
-
-	public int getScore() {
-		return score;
+	private String content;
+	@Column(insertable=true, updatable=false)
+	private Date postdate;
+	public int getBno() {
+		return bno;
 	}
-
-
-	public void setScore(int score) {
-		this.score = score;
+	public void setBno(int bno) {
+		this.bno = bno;
 	}
-
-
-	public Integer getNum() {
-		return Num;
+	public String getId() {
+		return id;
 	}
-
-
-	public void setNum(Integer num) {
-		Num = num;
+	public void setId(String id) {
+		this.id = id;
 	}
-
-
-	
-	public String getMemberId() {
-		return memberId;
-	}
-
-
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
-
-
 	public String getTitle() {
 		return title;
 	}
-
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-
-	public String getContents() {
-		return contents;
+	public String getContent() {
+		return content;
 	}
-
-
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setContent(String content) {
+		this.content = content;
 	}
-
-
-	
-
-	public Date getPostTime() {
-		return postTime;
+	public Date getPostdate() {
+		return postdate;
 	}
-
-
-	public void setPostTime(Date postTime) {
-		this.postTime = postTime;
+	public void setPostdate(Date postdate) {
+		this.postdate = postdate;
 	}
-
-
 	@Override
 	public String toString() {
-		return "BoardVo [Num=" + Num + ", memberId=" + memberId + ", title=" + title + ", contents=" + contents
-				+ ", postTime=" + postTime + "]";
+		return "BoardVo [bno=" + bno + ", id=" + id + ", title=" + title + ", content=" + content + ", postdate="
+				+ postdate + "]";
 	}
-
-
-
-
-
+	
+	
+	
 	
 
 }
