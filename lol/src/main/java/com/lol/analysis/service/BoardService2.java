@@ -16,8 +16,8 @@ public class BoardService2 {
 	@Autowired
 	private BoardRepository boardRepository;
 	
-	public void write(BoardVo board) {
-		
+	
+	public void write(BoardVo board) {	
 		boardRepository.save(board);
 	}
 	

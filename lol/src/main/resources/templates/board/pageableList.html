@@ -39,7 +39,7 @@
 			<tbody>
 				<tr th:each="board:${boardList}">
 					<td th:text="${board.bno}"></td>
-					<td><a th:text="${board.title}" th:href="@{/board/board/view(id=${board.bno})}"></a></td>
+					<td><a th:text="${board.title}" th:href="@{/board/detail(id=${board.bno})}"></a></td>
 					<td th:text="${board.id}"></td>
 					<td th:text="${board.postTime}"></td>	
 					
