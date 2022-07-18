@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>board</title>
+	
+</head>
+<body>
+<header th:insert="header_nav.html"></header>
+	<div class="container">
+		<h2>게시판 등록</h2>
+        	
+		<form method="post" action="/member/inserted">
+			<table>
+				<tr>
+					<td>제목</td>
+					<td><input type="text" id="title" name="title"></td>
+                    			
+				</tr>
+				<tr>
+					<td>글쓴이</td>
+					<td><input type="text"  name="memberId" th:value="${session.memVo?.id}"></td>
+                    			
+				</tr>
+				<tr>
+					<td colspan="2">
+						내용
+						<textarea id="contents" name="contents"></textarea>
+					</td>
+				</tr>
+				
+			</table>
+			<input type="submit" value="저장">
+		</form>
+	</div>
+</body>
+</html>
