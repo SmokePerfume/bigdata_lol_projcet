@@ -28,73 +28,89 @@ background: #808080 !important;
 	border-radius: 5px;
 	width:800px;
 }
-@media (max-width:1050px) {
+/* @media (max-width:1050px) {
     main{
         flex-direction: column;
     }
-}
-main{
+} */
+/* main{
 	display:flex;
-}
+} */
 </style>
 <body>
 	<!-- 상단 메뉴바 -->
 	<header th:insert="header_nav.html"></header>
 	<main>
-	<div class="inputdata container alert alert-light">
-		<form name="predictForm" action="/test/case1.do" method="post">
-		<h2>입력 폼</h2>
-			<div class="signup-el">
-				<label for="inputdata1">데이터1:</label>
-				<input id="inputdata1" type="text" name="inputdata1" value="testdata1" placeholder="데이터">
-			</div>
-			<div class="signup-el">
-				<label for="inputdata2">데이터2:</label>
-				<input id="inputdata2" type="text" name="inputdata2" value="testdata2" placeholder="데이터">
-			</div>
-			<div class="signup-el">
-				<label for="inputdata3">데이터3:</label>
-				<input id="inputdata3" type="text" name="id" value="testdata3" placeholder="데이터">
-			</div>
-			<div class="signup-el">
-				<label for="inputdata4">데이터4:</label>
-				<input id="inputdata4" type="text" name="id" value="testdata4" placeholder="데이터">
-			</div>
-			<div class="signup-el">
-				<label for="inputdata5">데이터5:</label>
-				<input id="inputdata5" type="text" name="id" value="testdata5" placeholder="데이터">
-			</div>
-			<div class="signup-el">
-				<label for="inputdata6">데이터6:</label>
-				<input id="inputdata6" type="text" name="id" value="testdata6" placeholder="데이터">
-			</div>
-			<div class="signup-el">
-				<label for="inputdata6">데이터6:</label>
-				<input id="inputdata6" type="text" name="id" value="testdata6" placeholder="데이터">
-			</div>
-			<div class="signup-el">
-				<label for="inputdata6">데이터6:</label>
-				<input id="inputdata6" type="text" name="id" value="testdata6" placeholder="데이터">
-			</div>
-			<div class="signup-el">
-				<label for="inputdata6">데이터6:</label>
-				<input id="inputdata6" type="text" name="id" value="testdata6" placeholder="데이터">
-			</div>
-						<!-- 아래두 좀 변경 -->
-			<div class="group-btn">
-				<button id="predictBtn" class="btn btn-primary" type="submit">예측하기</button>
-				<button class="btn btn-primary" type="button" onclick="history.back()">뒤로가기</button>
-			</div>
-		</form>
-	</div>
-	<div class="resultGraph container alert alert-light">	
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-		<canvas id="radar-chart" width="500" height="500"></canvas>
-	</div>
+		<div class="inputdata container alert alert-light">
+			<form name="predictForm" action="/test/case1.do" method="post">
+			<h2 style="text-align: center;">입력 폼</h2>
+				<div class="input-team d-flex">
+					<div class="red-div d-flex flex-column">
+						<h2 style="color:red; text-align: center;">레드팀</h2>
+						<div class="signup-el">
+							<label for="reddata1">챔피언:</label>
+							<input id="reddata1" type="text" name="reddata1" value="reddata1" placeholder="데이터">
+						</div>
+						<div class="signup-el">
+							<label for="reddata2">챔피언:</label>
+							<input id="reddata2" type="text" name="reddata2" value="reddata2" placeholder="데이터">
+						</div>
+						<div class="signup-el">
+							<label for="reddata3">챔피언:</label>
+							<input id="reddata3" type="text" name="reddata3" value="reddata3" placeholder="데이터">
+						</div>
+						<div class="signup-el">
+							<label for="reddata4">챔피언:</label>
+							<input id="reddata4" type="text" name="reddata4" value="reddata4" placeholder="데이터">
+						</div>
+						<div class="signup-el">
+							<label for="reddata5">챔피언:</label>
+							<input id="reddata5" type="text" name="reddata5" value="reddata5" placeholder="데이터">
+						</div>
+					</div>
+					<div class="blue-div  d-flex flex-column">
+						<h2 style="color:blue; text-align: center;">블루팀</h2>
+						<div class="signup-el">
+							<label for="bluedata1">챔피언:</label>
+							<input id="bluedata1" type="text" name="bluedata1" value="bluedata1" placeholder="데이터">
+						</div>
+						<div class="signup-el">
+							<label for="bluedata2">챔피언:</label>
+							<input id="bluedata2" type="text" name="bluedata2" value="bluedata2" placeholder="데이터">
+						</div>
+						<div class="signup-el">
+							<label for="bluedata3">챔피언:</label>
+							<input id="bluedata3" type="text" name="bluedata3" value="bluedata3" placeholder="데이터">
+						</div>
+						<div class="signup-el">
+							<label for="bluedata4">챔피언:</label>
+							<input id="bluedata4" type="text" name="bluedata4" value="bluedata4" placeholder="데이터">
+						</div>
+						<div class="signup-el">
+							<label for="bluedata5">챔피언:</label>
+							<input id="bluedata5" type="text" name="bluedata5" value="bluedata5" placeholder="데이터">
+						</div>
+					</div>
+				</div>
+				<!-- 아래두 좀 변경 -->
+				<div class="group-btn d-flex justify-content-around">
+					<input id="predresult" type="text" name="predresult" value="" placeholder="예측결과">
+					<button id="predictBtn" class="btn btn-primary" type="submit">예측하기</button>
+					<button class="btn btn-primary" type="button" onclick="history.back()">뒤로가기</button>
+				</div>
+			</form>
+		</div>
+		
 		<div class="resultGraph container alert alert-light">	
-		<h5 style="text-align: center;">유저별 그래프</h5>
-		<canvas id="logNameChart" style="width: 600px; height: 400px;"></canvas>	
-	</div>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>	
+			<h5 style="text-align: center;">승률 측정</h5>
+			<canvas id="radar-chart" style="width:600px; height:400px;"></canvas>
+		</div>
+		
+		<div class="resultGraph container alert alert-light">	
+			<h5 style="text-align: center;">유저별 그래프</h5>
+			<canvas id="logNameChart" style="width: 600px; height: 400px;"></canvas>	
+		</div>
 	</main>
 
 </body>
