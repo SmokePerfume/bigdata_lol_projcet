@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -99,6 +98,9 @@ background: #808080 !important;
 					<button class="btn btn-primary" type="button" onclick="history.back()">뒤로가기</button>
 				</div>
 			</form>
+		</div>
+		<div th:each="ch:${chList}">
+			<p th:text="${ch.name}"></p>
 		</div>
 		
 		<div class="resultGraph container alert alert-light">	

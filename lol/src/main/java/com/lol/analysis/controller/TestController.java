@@ -26,6 +26,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.lol.analysis.dto.ChampionDto;
+import com.lol.analysis.repository.ChampionRepository;
 import com.lol.analysis.repository.MemberRepository;
 import com.lol.analysis.vo.MemGenderCntVo;
 import com.lol.analysis.vo.MemberVo;
@@ -36,9 +38,16 @@ public class TestController {
 	@Autowired
 	MemberRepository mr;
 	
+
+	@Autowired
+	ChampionRepository cr;
+	
 	@GetMapping("/case1.do")
-	public ModelAndView case2(ModelAndView model){
-		model.setViewName("test/case1");
+	public String case1(Model model){
+			//정상 작동 확인 나중에 목록 넘길시 사용
+		//System.out.println(cr.findAll());
+		//model.addAttribute("chList", cr.findAll());
+		
 		
 
 //		Gson gson = new Gson();
@@ -62,25 +71,31 @@ public class TestController {
 //		String json = gson.toJson(jArray);
 //		model.addAttribute("json", json);
 		
-		return model;
+		return "test/case1";
 	}
 	
 	@PostMapping("/case1.do")
-	public String case1(String inputdata1, String inputdata2) throws Exception{
+	public String case1(String reddata1, String reddata2,String reddata3,String reddata4,String reddata5,
+			String bluedata1,String bluedata2,String bluedata3,String bluedata4,String bluedata5) throws Exception{
 		////////////////
-		System.out.println("Python3 Call");
-        String[] command = new String[4];
-        command[0] = "python3";
-        //command[1] = "\\workspace\\java-call-python\\src\\main\\resources\\test.py";
-        command[1] = resolvePythonScriptPath("hello.py");
-        System.out.println("현재경로 : "+ command[1]);
-        command[2] = inputdata1;
-        command[3] = inputdata2;
-        try {
-            execPython(command);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+//		System.out.println("Python3 Call");
+//        String[] command = new String[4];
+//        command[0] = "python3";
+//      //command[1] = "\\workspace\\java-call-python\\src\\main\\resources\\test.py";
+//        command[1] = resolvePythonScriptPath("hello.py");
+//        System.out.println("현재경로 : "+ command[1]);
+//        command[2] = reddata1;
+//        command[3] = reddata2;
+//        try {
+//            execPython(command);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+      String[] command = new String[10];
+		for(int i=0; i<5;i++) {
+			command[i] =  
+		}
         return "redirect:/test/case1.do";
 	}
 
