@@ -74,15 +74,12 @@ public class TestController {
 		return "test/case1";
 	}
 	
-	@PostMapping("/case1.do")
-	public String case1(String reddata1, String reddata2,String reddata3,String reddata4,String reddata5,
-			String bluedata1,String bluedata2,String bluedata3,String bluedata4,String bluedata5) throws Exception{
-		////////////////
-
+//	@PostMapping("/case1.do")
+//	public String case1(String reddata1, String reddata2) throws Exception{
 //		System.out.println("Python3 Call");
 //        String[] command = new String[4];
 //        command[0] = "python3";
-//      //command[1] = "\\workspace\\java-call-python\\src\\main\\resources\\test.py";
+//        command[1] = "\\workspace\\java-call-python\\src\\main\\resources\\test.py";
 //        command[1] = resolvePythonScriptPath("hello.py");
 //        System.out.println("현재경로 : "+ command[1]);
 //        command[2] = reddata1;
@@ -92,10 +89,36 @@ public class TestController {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-      String[] command = new String[10];
-		for(int i=0; i<5;i++) {
-			command[i] =  
+//        return "redirect:/test/case1.do";
+//	}
+	
+	@PostMapping("/case1.do")
+	public String case1(String reddata1, String reddata2,String reddata3,String reddata4,String reddata5,
+			String bluedata1,String bluedata2,String bluedata3,String bluedata4,String bluedata5) throws Exception{
+		
+		System.out.println("Python3 Call test1");
+		String[] command = new String[11];
+		command[0] = "python3";
+        command[1] = resolvePythonScriptPath("testing1.py");
+        System.out.println("현재경로 : "+ command[1]);
+		command[2] = reddata1;
+	    command[3] = reddata2;
+		command[4] = reddata3;
+	    command[5] = reddata4;
+		command[6] = reddata5;
+		
+	    command[7] = bluedata1;
+		command[8] = bluedata2;
+	    command[9] = bluedata3;
+		command[10] = bluedata4;
+	    command[11] = bluedata5;
+		
+		try {
+			execPython(command);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
         return "redirect:/test/case1.do";
 	}
 
