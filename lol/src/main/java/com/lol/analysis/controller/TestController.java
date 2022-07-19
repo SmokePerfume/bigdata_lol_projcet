@@ -78,7 +78,7 @@ public class TestController {
 //	public String case1(String reddata1, String reddata2) throws Exception{
 //		System.out.println("Python3 Call");
 //        String[] command = new String[4];
-//        command[0] = "python3";
+//        command[0] = "python";
 //        command[1] = "\\workspace\\java-call-python\\src\\main\\resources\\test.py";
 //        command[1] = resolvePythonScriptPath("hello.py");
 //        System.out.println("현재경로 : "+ command[1]);
@@ -95,6 +95,8 @@ public class TestController {
 	@PostMapping("/case1.do")
 	public String case1(String reddata1, String reddata2,String reddata3,String reddata4,String reddata5,
 			String bluedata1,String bluedata2,String bluedata3,String bluedata4,String bluedata5) throws Exception{
+		
+		//pip3 install -U scikit-learn
 		
 		System.out.println("Python3 Call test1");
 		String[] command = new String[12];
