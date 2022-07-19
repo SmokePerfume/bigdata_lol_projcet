@@ -97,7 +97,7 @@ public class TestController {
 			String bluedata1,String bluedata2,String bluedata3,String bluedata4,String bluedata5) throws Exception{
 		
 		System.out.println("Python3 Call test1");
-		String[] command = new String[11];
+		String[] command = new String[12];
 		command[0] = "python3";
         command[1] = resolvePythonScriptPath("testing1.py");
         System.out.println("현재경로 : "+ command[1]);
