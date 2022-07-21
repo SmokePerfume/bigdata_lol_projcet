@@ -55,7 +55,7 @@ public class ServiceController {
 		System.out.println("Python3 Call test1");
 		String[] command = new String[12];
 		command[0] = "python3";
-        command[1] = resolvePythonScriptPath("testing1.py");
+        command[1] = resolvePythonScriptPath("predwin.py");
         System.out.println("현재경로 : "+ command[1]);
 		command[2] = reddata1;
 	    command[3] = reddata2;
