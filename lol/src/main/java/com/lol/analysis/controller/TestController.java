@@ -33,7 +33,7 @@ import com.lol.analysis.vo.MemGenderCntVo;
 import com.lol.analysis.vo.MemberVo;
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/service")
 public class TestController {
 	@Autowired
 	MemberRepository mr;
@@ -42,7 +42,7 @@ public class TestController {
 	@Autowired
 	ChampionRepository cr;
 	
-	@GetMapping("/case1.do")
+	@GetMapping("/test1.do")
 	public String case1(Model model){
 			//정상 작동 확인 나중에 목록 넘길시 사용
 		//System.out.println(cr.findAll());
@@ -71,7 +71,7 @@ public class TestController {
 //		String json = gson.toJson(jArray);
 //		model.addAttribute("json", json);
 		
-		return "test/case1";
+		return "service/test1";
 	}
 	
 //	@PostMapping("/case1.do")
@@ -92,7 +92,7 @@ public class TestController {
 //        return "redirect:/test/case1.do";
 //	}
 	
-	@PostMapping("/case1.do")
+	@PostMapping("/test1.do")
 	public String case1(String reddata1, String reddata2,String reddata3,String reddata4,String reddata5,
 			String bluedata1,String bluedata2,String bluedata3,String bluedata4,String bluedata5) throws Exception{
 		
@@ -121,7 +121,7 @@ public class TestController {
 			e.printStackTrace();
 		}
 		
-        return "redirect:/test/case1.do";
+        return "redirect:/service/test1.do";
 	}
 
 //    @GetMapping("/update.do")
