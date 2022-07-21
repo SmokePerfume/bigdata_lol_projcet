@@ -93,7 +93,7 @@ background: #808080 !important;
 				</div>
 				<!-- 아래두 좀 변경 -->
 				<div class="group-btn d-flex justify-content-around">
-					<input id="predresult" type="text" name="predresult" value="" placeholder="예측결과">
+					<span th:text="&{predresult}"></span>
 					<button id="predictBtn" class="btn btn-primary" type="submit">예측하기</button>
 					<button class="btn btn-primary" type="button" onclick="history.back()">뒤로가기</button>
 				</div>
