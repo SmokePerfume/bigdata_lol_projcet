@@ -48,46 +48,66 @@ background: #808080 !important;
 						<h2 style="color:red; text-align: center;">레드팀</h2>
 						<div class="signup-el">
 							<label for="reddata1">챔피언:</label>
-							<input id="reddata1" type="text" name="reddata1" value="1" placeholder="데이터">
+							<select id="reddata1" size="1" name="reddata1">
+								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+							</select>
 						</div>
 						<div class="signup-el">
 							<label for="reddata2">챔피언:</label>
-							<input id="reddata2" type="text" name="reddata2" value="2" placeholder="데이터">
+							<select id="reddata2" size="1" name="reddata2">
+								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+							</select>
 						</div>
 						<div class="signup-el">
 							<label for="reddata3">챔피언:</label>
-							<input id="reddata3" type="text" name="reddata3" value="3" placeholder="데이터">
+							<select id="reddata3" size="1" name="reddata3">
+								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+							</select>
 						</div>
 						<div class="signup-el">
 							<label for="reddata4">챔피언:</label>
-							<input id="reddata4" type="text" name="reddata4" value="4" placeholder="데이터">
+							<select id="reddata4" size="1" name="reddata4">
+								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+							</select>
 						</div>
 						<div class="signup-el">
 							<label for="reddata5">챔피언:</label>
-							<input id="reddata5" type="text" name="reddata5" value="5" placeholder="데이터">
+							<select id="reddata5" size="1" name="reddata5">
+								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+							</select>
 						</div>
 					</div>
 					<div class="blue-div  d-flex flex-column">
 						<h2 style="color:blue; text-align: center;">블루팀</h2>
 						<div class="signup-el">
 							<label for="bluedata1">챔피언:</label>
-							<input id="bluedata1" type="text" name="bluedata1" value="6" placeholder="데이터">
+							<select id="bluedata1" size="1" name="bluedata1">
+								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+							</select>
 						</div>
 						<div class="signup-el">
 							<label for="bluedata2">챔피언:</label>
-							<input id="bluedata2" type="text" name="bluedata2" value="7" placeholder="데이터">
+							<select id="bluedata2" size="1" name="bluedata2">
+								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+							</select>
 						</div>
 						<div class="signup-el">
 							<label for="bluedata3">챔피언:</label>
-							<input id="bluedata3" type="text" name="bluedata3" value="8" placeholder="데이터">
+							<select id="bluedata3" size="1" name="bluedata3">
+								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+							</select>
 						</div>
 						<div class="signup-el">
 							<label for="bluedata4">챔피언:</label>
-							<input id="bluedata4" type="text" name="bluedata4" value="9" placeholder="데이터">
+							<select id="bluedata4" size="1" name="bluedata4">
+								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+							</select>
 						</div>
 						<div class="signup-el">
 							<label for="bluedata5">챔피언:</label>
-							<input id="bluedata5" type="text" name="bluedata5" value="10" placeholder="데이터">
+							<select id="bluedata5" size="1" name="bluedata5">
+								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -98,14 +118,10 @@ background: #808080 !important;
 				</div>
 			</form>
 		</div>
-		<div>
+		<div class="resultGraph container alert alert-light">
+			<h2>- 레드팀의 승리 예측 -</h2>
 			<span th:text="${predresult}"></span>
 		</div>
-		<!-- 
-		<div th:each="ch:${chList}">
-			<p th:text="${ch.name}"></p>
-		</div>
-		 -->
 		<div class="resultGraph container alert alert-light">	
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>	
 			<h5 style="text-align: center;">승률 측정</h5>
