@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -29,9 +30,11 @@ import com.google.gson.JsonArray;
 import com.lol.analysis.dto.ChampionDto;
 import com.lol.analysis.repository.ChampionRepository;
 import com.lol.analysis.repository.MemberRepository;
+import com.lol.analysis.repository.PredDetailRepository;
 import com.lol.analysis.repository.PredRepository;
 import com.lol.analysis.vo.MemGenderCntVo;
 import com.lol.analysis.vo.MemberVo;
+import com.lol.analysis.vo.PredDetailVo;
 import com.lol.analysis.vo.PredVo;
 
 @Controller
@@ -45,6 +48,9 @@ public class ServiceController {
 	
 	@Autowired
 	PredRepository pr;
+	
+	@Autowired
+	PredDetailRepository pdr;
 	
 	@GetMapping("/test1.do")
 	public String case1(Model model){
@@ -61,30 +67,33 @@ public class ServiceController {
 		command[0] = "python3";
         command[1] = resolvePythonScriptPath("predwin.py");
         System.out.println("현재경로 : "+ command[1]);
-
-        reddata1="blue_777";
-		reddata2="blue_888";
-		reddata3="blue_131";
-		reddata4="blue_157";
-		reddata5="blue_429";
-		bluedata1="red_104";
-		bluedata2="red_81";
-		bluedata3="red_43";
-		bluedata4="red_268";
-		bluedata5="red_223";
         
-		command[2] = reddata1;
-	    command[3] = reddata2;
-		command[4] = reddata3;
-	    command[5] = reddata4;
-		command[6] = reddata5;
+        bluedata1="blue_777";
+		bluedata2="blue_888";
+		bluedata3="blue_131";
+		bluedata4="blue_157";
+		bluedata5="blue_429";
+		reddata1="red_104";
+		reddata2="red_81";
+		reddata3="red_43";
+		reddata4="red_268";
+		reddata5="red_223";
 		
-	    command[7] = bluedata1;
-		command[8] = bluedata2;
-	    command[9] = bluedata3;
-		command[10] = bluedata4;
-	    command[11] = bluedata5;
+        String[] input_arr= {bluedata1,bluedata2,bluedata3,bluedata4,bluedata5,reddata1,reddata2,reddata3,reddata4,reddata5};
+        
+
+		
+	    command[2] = bluedata1;
+		command[3] = bluedata2;
+	    command[4] = bluedata3;
+		command[5] = bluedata4;
+	    command[6] = bluedata5;
 	    
+		command[7] = reddata1;
+	    command[8] = reddata2;
+		command[9] = reddata3;
+	    command[10] = reddata4;
+		command[11] = reddata5;
 		
 	    
 	    MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
@@ -100,12 +109,22 @@ public class ServiceController {
 		    predVo.setId(memberVo.getId());
 		    predVo.setResult(Float.parseFloat(predresult));
 		    pr.save(predVo);
+		    List<PredVo> pred_list=pr.findLastPredTuple();
+		    PredVo pred_last=pred_list.get(0);
+		    
+		    for(int i=0; i<input_arr.length;i++) {
+		    	PredDetailVo preddeVo=new PredDetailVo();
+		    	String[] str_arr=input_arr[i].split("_");
+		    	preddeVo.setPredno(pred_last.getPredno());
+		    	preddeVo.setTeam(str_arr[0]);
+		    	preddeVo.setChcode(Integer.parseInt(str_arr[1]));
+		    	pdr.save(preddeVo);
+		    }
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("predresult", predresult);
-		System.out.println(predresult);
         return "redirect:/service/test1.do";
 	}
     

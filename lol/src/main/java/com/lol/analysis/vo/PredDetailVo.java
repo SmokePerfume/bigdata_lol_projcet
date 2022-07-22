@@ -36,6 +36,8 @@ import org.hibernate.annotations.Formula;
 public class PredDetailVo {
 	
 	@Id
+	@Column(insertable=false, updatable=false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int preddeno;
 	private String team;
 	private int predno;

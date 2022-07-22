@@ -9,15 +9,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.lol.analysis.vo.BoardVo;
+import com.lol.analysis.vo.PredDetailVo;
 import com.lol.analysis.vo.PredVo;
 
 
-public interface PredDetailRepository extends CrudRepository<PredDetailRepository, Integer>{
+public interface PredDetailRepository extends CrudRepository<PredDetailVo, Integer>{
 
 	public Page<PredVo> findAll(Pageable pageable);
 
-	
-	
-	
+
 
 }
