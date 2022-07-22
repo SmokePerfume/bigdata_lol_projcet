@@ -61,6 +61,18 @@ public class ServiceController {
 		command[0] = "python3";
         command[1] = resolvePythonScriptPath("predwin.py");
         System.out.println("현재경로 : "+ command[1]);
+
+        reddata1="blue_777";
+		reddata2="blue_888";
+		reddata3="blue_131";
+		reddata4="blue_157";
+		reddata5="blue_429";
+		bluedata1="red_104";
+		bluedata2="red_81";
+		bluedata3="red_43";
+		bluedata4="red_268";
+		bluedata5="red_223";
+        
 		command[2] = reddata1;
 	    command[3] = reddata2;
 		command[4] = reddata3;
@@ -72,6 +84,8 @@ public class ServiceController {
 	    command[9] = bluedata3;
 		command[10] = bluedata4;
 	    command[11] = bluedata5;
+	    
+		
 	    
 	    MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
 
