@@ -29,8 +29,10 @@ import com.google.gson.JsonArray;
 import com.lol.analysis.dto.ChampionDto;
 import com.lol.analysis.repository.ChampionRepository;
 import com.lol.analysis.repository.MemberRepository;
+import com.lol.analysis.repository.PredRepository;
 import com.lol.analysis.vo.MemGenderCntVo;
 import com.lol.analysis.vo.MemberVo;
+import com.lol.analysis.vo.PredVo;
 
 @Controller
 @RequestMapping("/service")
@@ -38,9 +40,11 @@ public class ServiceController {
 	@Autowired
 	MemberRepository mr;
 	
-
 	@Autowired
 	ChampionRepository cr;
+	
+	@Autowired
+	PredRepository pr;
 	
 	@GetMapping("/test1.do")
 	public String case1(Model model){
@@ -50,7 +54,7 @@ public class ServiceController {
 	
 	@PostMapping("/test1.do")
 	public String case1(String reddata1, String reddata2,String reddata3,String reddata4,String reddata5,
-			String bluedata1,String bluedata2,String bluedata3,String bluedata4,String bluedata5, Model model) throws Exception{
+			String bluedata1,String bluedata2,String bluedata3,String bluedata4,String bluedata5, Model model, HttpSession session) throws Exception{
 		
 		System.out.println("Python3 Call test1");
 		String[] command = new String[12];
@@ -69,11 +73,19 @@ public class ServiceController {
 		command[10] = bluedata4;
 	    command[11] = bluedata5;
 	    
+	    MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
+
+	    
+	    
 	    String predresult ="";
 		
 		try {
 			predresult=execPython(command);
 			predresult=predresult.substring(predresult.length()-12);
+			PredVo predVo=new PredVo();
+		    predVo.setId(memberVo.getId());
+		    predVo.setResult(Float.parseFloat(predresult));
+		    pr.save(predVo);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
