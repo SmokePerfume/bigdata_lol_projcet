@@ -68,13 +68,16 @@ public class ServiceController {
 	    command[9] = bluedata3;
 		command[10] = bluedata4;
 	    command[11] = bluedata5;
+	    
+	    String predresult ="";
 		
 		try {
-			model.addAttribute("predresult", execPython(command));
+			predresult=execPython(command);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		model.addAttribute("predresult", predresult);
+		System.out.println(predresult);
         return "redirect:/service/test1.do";
 	}
     
