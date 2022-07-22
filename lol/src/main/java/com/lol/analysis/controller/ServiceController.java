@@ -73,6 +73,8 @@ public class ServiceController {
 		
 		try {
 			predresult=execPython(command);
+			predresult=predresult.substring(predresult.length()-12);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

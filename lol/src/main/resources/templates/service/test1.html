@@ -93,16 +93,19 @@ background: #808080 !important;
 				</div>
 				<!-- 아래두 좀 변경 -->
 				<div class="group-btn d-flex justify-content-around">
-					<span th:text="${predresult}"></span>
 					<button id="predictBtn" class="btn btn-primary" type="submit">예측하기</button>
 					<button class="btn btn-primary" type="button" onclick="history.back()">뒤로가기</button>
 				</div>
 			</form>
 		</div>
+		<div>
+			<span th:text="${predresult}"></span>
+		</div>
+		<!-- 
 		<div th:each="ch:${chList}">
 			<p th:text="${ch.name}"></p>
 		</div>
-		
+		 -->
 		<div class="resultGraph container alert alert-light">	
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>	
 			<h5 style="text-align: center;">승률 측정</h5>
