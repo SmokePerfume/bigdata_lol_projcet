@@ -53,7 +53,7 @@ public class BoardController {
 	
 	@GetMapping("/insert.do")
 	public String insert() {
-		return "/board/insert";
+		return "board/insert";
 	}
 //	
 //	@PostMapping("/inserted")
