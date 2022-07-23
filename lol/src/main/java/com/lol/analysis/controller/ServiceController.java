@@ -77,16 +77,16 @@ public class ServiceController {
 		reddata5="red_"+reddata5;
 		
 		
-		bluedata1="blue_777"; 	//요네
-		bluedata2="blue_888"; 	//레나타글라스크
-		bluedata3="blue_131"; 	//다이애나
-		bluedata4="blue_157"; 	//야스오
-		bluedata5="blue_429"; 	//칼리스타
-		reddata1="red_104"; 	//그레이브즈
-		reddata2="red_81"; 		//이즈리얼
-		reddata3="red_43"; 		//카르마
-		reddata4="red_268"; 	//아지르
-		reddata5="red_223";	 	//탐켄치
+//		bluedata1="blue_777"; 	//요네
+//		bluedata2="blue_888"; 	//레나타글라스크
+//		bluedata3="blue_131"; 	//다이애나
+//		bluedata4="blue_157"; 	//야스오
+//		bluedata5="blue_429"; 	//칼리스타
+//		reddata1="red_104"; 	//그레이브즈
+//		reddata2="red_81"; 		//이즈리얼
+//		reddata3="red_43"; 		//카르마
+//		reddata4="red_268"; 	//아지르
+//		reddata5="red_223";	 	//탐켄치
 			
 		System.out.println("Python3 Call test");
 		
@@ -117,8 +117,7 @@ public class ServiceController {
 	    String predresult ="";
 		
 		try {
-		//	predresult=execPython(command);
-			predresult="gdfgardfgadfgda0.0123456777"; //개인 환경 테스트용 입니다.
+			predresult=execPython(command);
 			predresult=predresult.substring(predresult.length()-12);
 			PredVo predVo=new PredVo();
 		    predVo.setId(memberVo.getId());
@@ -156,7 +155,6 @@ public class ServiceController {
         DefaultExecutor executor = new DefaultExecutor();
         executor.setStreamHandler(pumpStreamHandler);
         int result = executor.execute(commandLine);
-        System.out.println("result: " + result);
         System.out.println("output: " + outputStream.toString());
         return outputStream.toString();
 

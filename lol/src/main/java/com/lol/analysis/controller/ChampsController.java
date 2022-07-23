@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lol.analysis.dto.ChampJungleTierDto;
 import com.lol.analysis.dto.ChampTopTierDto;
 import com.lol.analysis.dto.ChampionDto;
+import com.lol.analysis.dto.RuneRateDto;
 import com.lol.analysis.repository.ChampJungleTierRepository;
 import com.lol.analysis.repository.ChampTopTierRepository;
 import com.lol.analysis.repository.ChampionRepository;
+import com.lol.analysis.repository.RuneLateRepository;
+
+
 
 @Controller
 @RequestMapping("/champs")
@@ -27,6 +31,9 @@ public class ChampsController {
 	
 	@Autowired
 	ChampJungleTierRepository cj;
+	
+	@Autowired
+	RuneLateRepository rl;
 	
 	@GetMapping("/list")
 	public String champs(Model model) {
@@ -42,11 +49,9 @@ public class ChampsController {
 	@GetMapping("/detail/champ_code/{code}")
 	public String champDetail(Model model,ChampionDto CpDto,ChampTopTierDto CtDto,ChampJungleTierDto CjDto,@PathVariable int code){
 		ChampionDto cpCode=cr.findByCode(CpDto.getCode());
-		model.addAttribute("cpList", cpCode);
-		ChampTopTierDto ctCode=ct.findByCode(CtDto.getCode());
-		model.addAttribute("ctList",ctCode);
-		ChampJungleTierDto cjCode=cj.findByCode(code);
-		model.addAttribute("cjList",cjCode);
+		model.addAttribute("cpCode", cpCode);
+		Iterable<RuneRateDto> rlcode=rl.findAll();
+		model.addAttribute("rlCode",rlcode);
 		return "champs/champ_detail";
 	}
 	
