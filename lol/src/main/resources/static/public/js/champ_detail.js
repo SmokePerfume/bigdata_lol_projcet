@@ -15,7 +15,8 @@ let rune_rate_code2 = rune_rate_main_code2.split("|");
 let rune_rate_img2 = rune_rate_main_img2.split("|");
 let rune_game_rate2 = rune_wp_game_rate2.split("|");
 let side_rune_box2 = $('.side_rune_box2');
-
+let rune_a = rune.split("|");
+console.log(rune_a)
 
 // 메인룬 출력
 for(let i=0; i<main_rune_alt.length; i++){
