@@ -7,6 +7,9 @@
 body{
 background: #808080 !important;
 }
+main{
+	display: flex;
+}
 .inputdata{
 	margin:10px !important;
 	padding : 5px;
@@ -39,8 +42,8 @@ background: #808080 !important;
 <body>
 	<!-- 상단 메뉴바 -->
 	<header th:insert="header_nav.html"></header>
-	<main>
-		<div class="inputdata container alert alert-light">
+	<main>	
+		<div class="inputdata container alert alert-light" style="max-width:600px;">
 			<form name="predictForm" action="/service/test1.do" method="post">
 			<h2 style="text-align: center;">입력 폼</h2>
 				<div class="input-team d-flex">
@@ -118,55 +121,38 @@ background: #808080 !important;
 				</div>
 			</form>
 		</div>
-		<div class="resultGraph container alert alert-light">
-			<h2>- 레드팀의 승리 예측 -</h2>
-			<span th:text="${predresult}"></span>
-		</div>
-		<div class="resultGraph container alert alert-light">	
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>	
-			<h5 style="text-align: center;">승률 측정</h5>
-			<canvas id="radar-chart" style="width:600px; height:400px;"></canvas>
-		</div>
-		
-		<div class="resultGraph container alert alert-light">	
-			<h5 style="text-align: center;">유저별 그래프</h5>
-			<canvas id="logNameChart" style="width: 600px; height: 400px;"></canvas>	
+		<div class="resultGraph container alert alert-light d-flex">
+			<div class="d-flex flex-column" style="width:500px;">
+				<h2>- 레드팀의 승리 예측 -</h2>
+				<span th:text="${predresult}"></span>
+			</div>	
+			<table class="table table-striped" style="width: 600px;">
+				<thead>
+					<th colspan="2"class="table-danger" style="font-size:25px;">레드팀</th>
+				</thead>
+				<tbody>
+					<tr th:each="chDto,chDtoStat:${chDtoList}" th:if="${chDtoStat.index}<5">
+						<td th:if="${chDtoStat.index}<5" style="width:137px;">
+							<img th:if="${chDtoStat.index}<5" th:alt="${chDto.name}" th:src="${chDto.cImg}">
+						</td>				
+						<td th:if="${chDtoStat.index}<5" th:text="${chDto.getName()}" style="display:table-cell;vertical-align: middle;text-align: center;font-size: 25px;"></td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table table-striped" style="width: 600px;">
+				<thead>
+					<th colspan="2" class="table-primary" style="font-size:25px;">블루팀</th>
+				</thead>
+				<tbody>
+					<tr th:each="chDto,chDtoStat:${chDtoList}" th:unless="${chDtoStat.index}<5">
+						<td th:unless="${chDtoStat.index}<5" style="width:137px;">
+							<img th:unless="${chDtoStat.index}<5" th:alt="${chDto.name}" th:src="${chDto.cImg}">
+						</td>	
+						<td th:unless="${chDtoStat.index}<5" th:text="${chDto.getName()}" style="display:table-cell;vertical-align: middle;text-align: center;font-size: 25px;"></td>
+					</tr>
+				</tbody>
+			</table>		
 		</div>
 	</main>
-
 </body>
-<script type="text/javascript">
-new Chart(document.getElementById("radar-chart"), {
-    type: 'radar',
-    data: {
-      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-      datasets: [
-        {
-          label: "1950",
-          fill: true,
-          backgroundColor: "rgba(179,181,198,0.2)",
-          borderColor: "rgba(179,181,198,1)",
-          pointBorderColor: "#fff",
-          pointBackgroundColor: "rgba(179,181,198,1)",
-          data: [8.77,55.61,21.69,6.62,6.82]
-        }, {
-          label: "2050",
-          fill: true,
-          backgroundColor: "rgba(255,99,132,0.2)",
-          borderColor: "rgba(255,99,132,1)",
-          pointBorderColor: "#fff",
-          pointBackgroundColor: "rgba(255,99,132,1)",
-          pointBorderColor: "#fff",
-          data: [25.48,54.16,7.61,8.06,4.45]
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Distribution in % of world population'
-      }
-    }
-});	
-</script>
 </html>

@@ -6,5 +6,5 @@ import com.lol.analysis.dto.RuneRateDto;
 
 
 public interface RuneLateRepository extends CrudRepository<RuneRateDto, String>{
-	
+
 }

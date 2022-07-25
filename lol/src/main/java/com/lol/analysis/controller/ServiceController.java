@@ -3,6 +3,7 @@ package com.lol.analysis.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +42,8 @@ import com.lol.analysis.vo.PredVo;
 @Controller
 @RequestMapping("/service")
 public class ServiceController {
+	
+	
 	@Autowired
 	MemberRepository mr;
 	
@@ -55,69 +58,69 @@ public class ServiceController {
 	
 	@GetMapping("/test1.do")
 	public String case1(Model model){
-		model.addAttribute("chList", cr.findAll());
+		Iterable<ChampionDto> chList=cr.findAllByOrderByNameAsc();
+		model.addAttribute("chList", chList);
 		return "service/test1";
 	}
 	
 	@PostMapping("/test1.do")
 	public String case1(String reddata1, String reddata2,String reddata3,String reddata4,String reddata5,
-			String bluedata1,String bluedata2,String bluedata3,String bluedata4,String bluedata5, Model model, 
+			String bluedata1,String bluedata2,String bluedata3,String bluedata4,String bluedata5, 
+			
+			Model model, 
 			HttpSession session,RedirectAttributes rttr) throws Exception{
 
 		
-		bluedata1="blue_"+bluedata1;
-		bluedata2="blue_"+bluedata2;
-		bluedata3="blue_"+bluedata3;
-		bluedata4="blue_"+bluedata4;
-		bluedata5="blue_"+bluedata5;
-		reddata1="red_"+reddata1;
-		reddata2="red_"+reddata2;
-		reddata3="red_"+reddata3;
-		reddata4="red_"+reddata4;
-		reddata5="red_"+reddata5;
-		
-		
-//		bluedata1="blue_777"; 	//요네
-//		bluedata2="blue_888"; 	//레나타글라스크
-//		bluedata3="blue_131"; 	//다이애나
-//		bluedata4="blue_157"; 	//야스오
-//		bluedata5="blue_429"; 	//칼리스타
-//		reddata1="red_104"; 	//그레이브즈
-//		reddata2="red_81"; 		//이즈리얼
-//		reddata3="red_43"; 		//카르마
-//		reddata4="red_268"; 	//아지르
-//		reddata5="red_223";	 	//탐켄치
+//		bluedata1="777"; 	//요네
+//		bluedata2="888"; 	//레나타글라스크
+//		bluedata3="131"; 	//다이애나
+//		bluedata4="157"; 	//야스오
+//		bluedata5="429"; 	//칼리스타
+//		reddata1="104"; 	//그레이브즈
+//		reddata2="81"; 		//이즈리얼
+//		reddata3="43"; 		//카르마
+//		reddata4="268"; 	//아지르
+//		reddata5="223";	 	//탐켄치
 			
 		System.out.println("Python3 Call test");
 		
 		String[] command = new String[12];
 		command[0] = "python3";
         command[1] = resolvePythonScriptPath("predwin.py");
+        
         System.out.println("현재경로 : "+ command[1]);
         
-       
-		
         String[] input_arr= {bluedata1,bluedata2,bluedata3,bluedata4,bluedata5,reddata1,reddata2,reddata3,reddata4,reddata5};
-		
-	    command[2] = bluedata1;
-		command[3] = bluedata2;
-	    command[4] = bluedata3;
-		command[5] = bluedata4;
-	    command[6] = bluedata5;
-	    
-		command[7] = reddata1;
-	    command[8] = reddata2;
-		command[9] = reddata3;
-	    command[10] = reddata4;
-		command[11] = reddata5;
-		
+        List<ChampionDto> chDtoList = new ArrayList<ChampionDto>();
+        
+        
+        for(int i=0;i<input_arr.length;i++) {
+        	chDtoList.add(cr.findByCode(Integer.parseInt(input_arr[i])));
+        	if(i<5) {
+            	input_arr[i]="blue_"+input_arr[i];
+        	}else {
+        		input_arr[i]="red_"+input_arr[i];
+        	}
+        	
+        }
+        
+        for(int i=2,j=0;i<12;i++,j++) {
+        	command[i]=input_arr[j];
+        }
+        
+        System.out.println("////////////////////////////red/////////////////////////////////////");
+        System.out.println(chDtoList.size());
+        for(ChampionDto testDto:chDtoList) {
+        	System.out.println(testDto.getName());
+        }
+        
 	    MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
 
-	    
 	    String predresult ="";
 		
 		try {
-			predresult=execPython(command);
+			//predresult=execPython(command);
+			predresult="sasad0.1234568791";	
 			predresult=predresult.substring(predresult.length()-12);
 			PredVo predVo=new PredVo();
 		    predVo.setId(memberVo.getId());
@@ -134,7 +137,9 @@ public class ServiceController {
 		    	preddeVo.setChcode(Integer.parseInt(str_arr[1]));
 		    	pdr.save(preddeVo);
 		    }
+		    
 			rttr.addFlashAttribute("predresult", predresult);
+			rttr.addFlashAttribute("chDtoList", chDtoList);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -165,4 +170,6 @@ public class ServiceController {
         File file = new File("src/PyStorage/" + filename);
         return file.getAbsolutePath();
     }
+    
+
 }

@@ -1,6 +1,9 @@
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 </head>
 <style>
 h1{
@@ -11,12 +14,16 @@ h1{
 .btn{
 	margin: 5px;
 }
+.page-name{
+	font-family: 'Nanum Pen Script', cursive;
+	font-size:80px;
+}
 </style>
 
 <body>
 	<header th:insert="header_nav.html"></header>
-	<h1>로그인 페이지</h1>
-	<div class="d-flex justify-content-center align-items-center" style="height: calc(100vh - 200px)">
+	<div class="d-flex justify-content-center align-items-center flex-column" style="height: calc(100vh - 300px)">
+		<h1 class="page-name" style="height:150px;">로그인</h1>
 		<form action="/member/login.do" method="post" style="width: 500px;">
 			<div class="mb-3 row">
 		    	<label for="staticEmail" class="col-sm-3 col-form-label">아이디</label>
