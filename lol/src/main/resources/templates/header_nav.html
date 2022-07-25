@@ -32,7 +32,7 @@
                             SERVICE
                         </a>
                     </li>	
-                    <li class="nav-item">
+                    <li th:if="${(session.memberVo?.grade<2)&&session.memberVo!=null}" class="nav-item" >
                         <a class="nav-link" href="/member/list.do/1">
                             MEMBER
                         </a>
