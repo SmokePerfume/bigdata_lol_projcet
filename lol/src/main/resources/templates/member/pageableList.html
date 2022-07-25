@@ -100,13 +100,6 @@ th, td {
 			</tr>
 		</tbody>
 	</table>	
-	<p>
-		totalPage: <strong th:text="${memberList.totalPages}"></strong>
-		newPage: <strong th:text="${memberList.number+1}"></strong>
-		hasNext: <strong th:text="${memberList.hasNext}"></strong>
-		hasPrev: <strong th:text="${memberList.hasPrevious}"></strong>
-	</p>
-	pageStart pageEnd pageNow
 	<div th:with="totalPages=${memberList.totalPages}, nowPage=${memberList.number+1}, 
 					hasNext=${memberList.hasNext}, hasPrev=${memberList.hasPrevious},
 					startPage=${((nowPage-2)<=0)?1:nowPage-2},
