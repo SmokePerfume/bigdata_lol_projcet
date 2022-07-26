@@ -1,7 +1,5 @@
 package com.lol.analysis.dto;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,12 +19,12 @@ public class ChampTopTierDto {
 	@Id
 	private int code;
 	private String name;
-	@Column(name = "win_late")
-	private String winLate;
-	@Column(name = "pick_late")
-	private String pickLate;
-	@Column(name = "ban_late")
-	private String banLate;
+	@Column(name = "win_rate")
+	private String winRate;
+	@Column(name = "pick_rate")
+	private String pickRate;
+	@Column(name = "ban_rate")
+	private String banRate;
 	private String tier;
 	
 	@OneToOne(fetch = FetchType.LAZY)

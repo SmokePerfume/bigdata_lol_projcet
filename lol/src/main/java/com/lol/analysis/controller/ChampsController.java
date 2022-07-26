@@ -47,11 +47,9 @@ public class ChampsController {
 	}
 
 	@GetMapping("/detail/champ_code/{code}")
-	public String champDetail(Model model,ChampionDto CpDto,ChampTopTierDto CtDto,ChampJungleTierDto CjDto,@PathVariable int code){
+	public String champDetail(Model model,ChampionDto CpDto,@PathVariable int code){
 		ChampionDto cpCode=cr.findByCode(CpDto.getCode());
 		model.addAttribute("cpCode", cpCode);
-		Iterable<RuneRateDto> rlcode=rl.findAll();
-		model.addAttribute("rlCode",rlcode);
 		return "champs/champ_detail";
 	}
 	
