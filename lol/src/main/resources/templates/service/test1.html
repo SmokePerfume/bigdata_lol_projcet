@@ -43,7 +43,7 @@ main{
 	<!-- 상단 메뉴바 -->
 	<header th:insert="header_nav.html"></header>
 	<main>	
-		<div class="inputdata container alert alert-light" style="max-width:600px;">
+		<div class="inputdata container alert alert-light" style="max-width:500px;">
 			<form name="predictForm" action="/service/test1.do" method="post">
 			<h2 style="text-align: center;">입력 폼</h2>
 				<div class="input-team d-flex">
@@ -122,11 +122,12 @@ main{
 			</form>
 		</div>
 		<div class="resultGraph container alert alert-light d-flex">
-			<div class="d-flex flex-column" style="width:500px;">
-				<h2>- 레드팀의 승리 예측 -</h2>
+			<div class="d-flex flex-column" style="width:250px;">
+				<h2> 승리 예측 </h2>	
+				<h3>레드팀의 경우</h3>
 				<span th:text="${predresult}"></span>
 			</div>	
-			<table class="table table-striped" style="width: 600px;">
+			<table class="table table-striped">
 				<thead>
 					<th colspan="2"class="table-danger" style="font-size:25px;">레드팀</th>
 				</thead>
@@ -139,7 +140,7 @@ main{
 					</tr>
 				</tbody>
 			</table>
-			<table class="table table-striped" style="width: 600px;">
+			<table class="table table-striped">
 				<thead>
 					<th colspan="2" class="table-primary" style="font-size:25px;">블루팀</th>
 				</thead>
