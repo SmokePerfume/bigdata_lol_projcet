@@ -1,7 +1,9 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 </head>
 <style>
 body{
@@ -126,6 +128,9 @@ main{
 				<h2> 승리 예측 </h2>	
 				<h3>레드팀의 경우</h3>
 				<span th:text="${predresult}"></span>
+				<div>
+					<canvas id="pieChart" style="width:300px;height:500px;"></canvas>	
+				</div>		
 			</div>	
 			<table class="table table-striped">
 				<thead>
@@ -156,4 +161,51 @@ main{
 		</div>
 	</main>
 </body>
+<script th:inline="javascript">
+/*<![CDATA[*/
+var rttrresult= /*[[${predresult}]]*/
+/*]]>*/
+console.log(rttrresult);
+var dataset = {
+	    label: "승패 여부",
+	    backgroundColor: ['#f8d6db', '#cde1ff'],//라벨별 컬러설정
+	    borderColor: '#22252B',
+	    data: [rttrresult, (1-rttrresult)]
+	}
+
+var labels=['레드팀','블루팀']; 
+  
+var datasets={ datasets:[dataset], labels:labels };
+
+var config = {
+	    type: 'pie',
+	    data: datasets, //데이터 셋 
+	    options: {
+	        responsive: true,
+	        maintainAspectRatio: false, //true 하게 되면 캔버스 width,height에 따라 리사이징된다.
+	        legend: {
+	            position: 'top',
+	            fontColor: 'black',
+	            align: 'center',
+	            display: true,
+	            fullWidth: true,
+	            labels: {
+	                fontColor: 'rgb(0, 0, 0)'
+	            }
+	        },
+	        plugins: {
+	            labels: {//두번째 script태그를 설정하면 각 항목에다가 원하는 데이터 라벨링을 할 수 있다.
+	                render: 'value',
+	                fontColor: 'black',
+	                fontSize: 15,
+	                precision: 2
+	            }
+
+	        }
+	    }
+	}
+var canvas=document.getElementById('pieChart');
+var pieChart = new Chart(canvas,config);
+	
+</script>
 </html>
