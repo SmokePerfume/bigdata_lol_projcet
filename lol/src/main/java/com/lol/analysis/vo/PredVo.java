@@ -43,6 +43,11 @@ public class PredVo {
 	@Column(insertable=true, updatable=false)
 	private Date regdate;
 	private float result;
+	
+	@OneToMany //fetch=FetchType.LAZY : default이다.
+	@JoinColumn(name="predno", insertable=false, updatable=false)
+	private List<PredDetailVo> PredDetail;
+	
 	public int getPredno() {
 		return predno;
 	}
@@ -67,9 +72,16 @@ public class PredVo {
 	public void setResult(float result) {
 		this.result = result;
 	}
+	public List<PredDetailVo> getPredDetail() {
+		return PredDetail;
+	}
+	public void setPredDetail(List<PredDetailVo> predDetail) {
+		PredDetail = predDetail;
+	}
 	@Override
 	public String toString() {
-		return "PredVo [predno=" + predno + ", id=" + id + ", regdate=" + regdate + ", result=" + result + "]";
+		return "PredVo [predno=" + predno + ", id=" + id + ", regdate=" + regdate + ", result=" + result
+				+ ", PredDetail=" + PredDetail + "]";
 	}
 	
 

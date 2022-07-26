@@ -11,6 +11,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.lol.analysis.dto.ChampionDto;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -42,6 +44,10 @@ public class PredDetailVo {
 	private String team;
 	private int predno;
 	private int chcode;
+	@ManyToOne //fetch=FetchType.LAZY : default이다.
+	@JoinColumn(name="chcode", insertable=false, updatable=false)
+	private ChampionDto champion;
+	
 	public int getPreddeno() {
 		return preddeno;
 	}
@@ -66,10 +72,17 @@ public class PredDetailVo {
 	public void setChcode(int chcode) {
 		this.chcode = chcode;
 	}
+	public ChampionDto getChampion() {
+		return champion;
+	}
+	public void setChampion(ChampionDto champion) {
+		this.champion = champion;
+	}
 	@Override
 	public String toString() {
 		return "PredDetailVo [preddeno=" + preddeno + ", team=" + team + ", predno=" + predno + ", chcode=" + chcode
-				+ "]";
+				+ ", champion=" + champion + "]";
 	}
+	
 	
 }

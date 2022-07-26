@@ -1,13 +1,18 @@
 package com.lol.analysis.dto;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.lol.analysis.vo.PredDetailVo;
 
 import lombok.Data;
 
@@ -52,5 +57,9 @@ public class ChampionDto {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "code",insertable = false,updatable = false)
 	private SpellRateDto sldto;
+	
+	@OneToMany //fetch=FetchType.LAZY : default이다.
+	@JoinColumn(name="code", insertable=false, updatable=false)
+	private List<PredDetailVo> PredDetail;
 	
 }

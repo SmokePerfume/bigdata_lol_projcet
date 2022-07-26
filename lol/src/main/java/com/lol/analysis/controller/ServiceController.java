@@ -34,6 +34,7 @@ import com.lol.analysis.repository.ChampionRepository;
 import com.lol.analysis.repository.MemberRepository;
 import com.lol.analysis.repository.PredDetailRepository;
 import com.lol.analysis.repository.PredRepository;
+import com.lol.analysis.vo.JoinQueryBean;
 import com.lol.analysis.vo.MemGenderCntVo;
 import com.lol.analysis.vo.MemberVo;
 import com.lol.analysis.vo.PredDetailVo;
@@ -57,19 +58,22 @@ public class ServiceController {
 	PredDetailRepository pdr;
 	
 	@GetMapping("/test1.do")
-	public String case1(Model model){
+	public String case1(Model model, HttpSession session){
+	    MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
 		Iterable<ChampionDto> chList=cr.findAllByOrderByNameAsc();
+		List<PredVo> Entitis_list = pr.findAllWithPredDetailWithChampion(memberVo.getId());
 		model.addAttribute("chList", chList);
+		for(PredVo Entits:Entitis_list) {
+			for(PredDetailVo Ent:Entits.getPredDetail())
+				System.out.println(Ent.getTeam()+" : "+Ent.getChampion().getName());
+		}
 		return "service/test1";
 	}
 	
 	@PostMapping("/test1.do")
 	public String case1(String reddata1, String reddata2,String reddata3,String reddata4,String reddata5,
 			String bluedata1,String bluedata2,String bluedata3,String bluedata4,String bluedata5, 
-			
-			Model model, 
-			HttpSession session,RedirectAttributes rttr) throws Exception{
-
+			Model model, HttpSession session,RedirectAttributes rttr) throws Exception{
 		
 //		bluedata1="777"; 	//요네
 //		bluedata2="888"; 	//레나타글라스크
@@ -120,7 +124,7 @@ public class ServiceController {
 		
 		try {
 			//predresult=execPython(command);
-			predresult="sasad0.1234568791";	
+			predresult="sasad0.4545568791";	
 			predresult=predresult.substring(predresult.length()-12);
 			PredVo predVo=new PredVo();
 		    predVo.setId(memberVo.getId());
