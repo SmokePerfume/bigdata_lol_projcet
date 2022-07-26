@@ -67,12 +67,12 @@
 		  					<a th:href="@{/champs/detail/champ_code/{code}(code = ${ct.code})}">
 		  						<input type="hidden" th:value="${ct.code}">
 		  						<img th:alt="${ct.name}" th:src="${ct.cpdto?.cImg}">
-		  						<span th:text="${ct.cpdto?.name}"></span>
+		  						<span th:text="${ct.name}"></span>
 		  					</a>
 		  				</td>
-		  				<td><span th:text="${ct.winLate}"></span></td>
-		  				<td><span th:text="${ct.pickLate}"></span></td>
-		  				<td><span th:text="${ct.banLate}"></span></td>
+		  				<td><span th:text="${ct.winRate}"></span></td>
+		  				<td><span th:text="${ct.pickRate}"></span></td>
+		  				<td><span th:text="${ct.banRate}"></span></td>
 		  				<td><img th:src="${ct.tier}"></td>
 		  			</tr>
 		  		</tbody>
@@ -95,12 +95,12 @@
 		  					<a th:href="@{/champs/detail/champ_code/{code}(code = ${cj.code})}">
 		  						<input type="hidden" th:value="${cj.code}">
 		  						<img th:alt="${cj.name}" th:src="${cj.cpdto?.cImg}">
-		  						<span th:text="${cj.cpdto?.name}"></span>
+		  						<span th:text="${cj.name}"></span>
 		  					</a>
 		  				</td>
-		  				<td><span th:text="${cj.winLate}"></span></td>
-		  				<td><span th:text="${cj.pickLate}"></span></td>
-		  				<td><span th:text="${cj.banLate}"></span></td>
+		  				<td><span th:text="${cj.winRate}"></span></td>
+		  				<td><span th:text="${cj.pickRate}"></span></td>
+		  				<td><span th:text="${cj.banRate}"></span></td>
 		  				<td><img th:src="${cj.tier}"></td>
 		  			</tr>
 		  		</tbody>

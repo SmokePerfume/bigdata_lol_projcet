@@ -49,4 +49,8 @@ public class ChampionDto {
 	@JoinColumn(name = "code",insertable = false,updatable = false)
 	private RuneRateDto rldto;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "code",insertable = false,updatable = false)
+	private SpellRateDto sldto;
+	
 }
