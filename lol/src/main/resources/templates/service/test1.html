@@ -144,11 +144,11 @@ main{
 					<th colspan="2" class="table-danger" style="font-size:25px;">레드팀</th>
 				</thead>
 				<tbody>
-					<tr th:each="chDto,chDtoStat:${chDtoList}" th:if="${chDtoStat.index}<5">
-						<td th:if="${chDtoStat.index}<5" style="width:137px;">
-							<img th:if="${chDtoStat.index}<5" th:alt="${chDto.name}" th:src="${chDto.cImg}">
-						</td>				
-						<td th:if="${chDtoStat.index}<5" th:text="${chDto.getName()}" style="display:table-cell;vertical-align: middle;text-align: center;font-size: 25px;"></td>
+					<tr th:each="chDto,chDtoStat:${chDtoList}" th:unless="${chDtoStat.index}<5">
+						<td th:unless="${chDtoStat.index}<5" style="width:137px;">
+							<img th:unless="${chDtoStat.index}<5" th:alt="${chDto.name}" th:src="${chDto.cImg}">
+						</td>	
+						<td th:unless="${chDtoStat.index}<5" th:text="${chDto.getName()}" style="display:table-cell;vertical-align: middle;text-align: center;font-size: 25px;"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -157,11 +157,11 @@ main{
 					<th colspan="2" class="table-primary" style="font-size:25px;">블루팀</th>
 				</thead>
 				<tbody>
-					<tr th:each="chDto,chDtoStat:${chDtoList}" th:unless="${chDtoStat.index}<5">
-						<td th:unless="${chDtoStat.index}<5" style="width:137px;">
-							<img th:unless="${chDtoStat.index}<5" th:alt="${chDto.name}" th:src="${chDto.cImg}">
-						</td>	
-						<td th:unless="${chDtoStat.index}<5" th:text="${chDto.getName()}" style="display:table-cell;vertical-align: middle;text-align: center;font-size: 25px;"></td>
+					<tr th:each="chDto,chDtoStat:${chDtoList}" th:if="${chDtoStat.index}<5">
+						<td th:if="${chDtoStat.index}<5" style="width:137px;">
+							<img th:if="${chDtoStat.index}<5" th:alt="${chDto.name}" th:src="${chDto.cImg}">
+						</td>				
+						<td th:if="${chDtoStat.index}<5" th:text="${chDto.getName()}" style="display:table-cell;vertical-align: middle;text-align: center;font-size: 25px;"></td>
 					</tr>
 				</tbody>
 			</table>		

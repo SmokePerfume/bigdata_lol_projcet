@@ -63,10 +63,6 @@ public class ServiceController {
 		PredVo prePred = pr.findAllWithPredDetailWithChampion(memberVo.getId()).get(0);
 		model.addAttribute("chList", chList);
 		model.addAttribute("prePred", prePred);
-//		for(PredVo Entits:Entitis_list) {
-//			for(PredDetailVo Ent:Entits.getPredDetail())
-//				System.out.println(Ent.getTeam()+" : "+Ent.getChampion().getName());
-//		}
 		return "service/test1";
 	}
 	
@@ -123,8 +119,8 @@ public class ServiceController {
 	    String predresult ="";
 		
 		try {
-			//predresult=execPython(command);
-			predresult="sasad0.4545568791";	
+			predresult=execPython(command); 
+			//predresult="sasad0.4545568791";	//개인환경 테스트용
 			predresult=predresult.substring(predresult.length()-12);
 			PredVo predVo=new PredVo();
 		    predVo.setId(memberVo.getId());
