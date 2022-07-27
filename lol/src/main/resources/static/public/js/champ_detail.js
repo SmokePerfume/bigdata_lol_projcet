@@ -293,6 +293,3 @@ for(i=0; i<spell_rate1.length; i++){
 		win_rate2.append(str)
 	}
 }
-
-
-

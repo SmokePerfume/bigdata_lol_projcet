@@ -8,8 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.lol.analysis.vo.PredDetailVo;
@@ -58,8 +56,21 @@ public class ChampionDto {
 	@JoinColumn(name = "code",insertable = false,updatable = false)
 	private SpellRateDto sldto;
 	
+<<<<<<< HEAD
 	@OneToMany //fetch=FetchType.LAZY : default이다.
 	@JoinColumn(name="code", insertable=false, updatable=false)
 	private List<PredDetailVo> PredDetail;
 	
+=======
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "code",insertable = false,updatable = false)
+	private SkillBuildRateDto sbdto;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "code",insertable = false,updatable = false)
+	private ItemRateDto irdto;
+>>>>>>> refs/remotes/origin/김승겸
 }
+
+
+
