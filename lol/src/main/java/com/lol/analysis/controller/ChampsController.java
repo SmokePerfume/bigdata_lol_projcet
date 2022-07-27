@@ -1,22 +1,22 @@
 package com.lol.analysis.controller;
 
-
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lol.analysis.dto.ChampJungleTierDto;
 import com.lol.analysis.dto.ChampTopTierDto;
 import com.lol.analysis.dto.ChampionDto;
-import com.lol.analysis.dto.RuneRateDto;
 import com.lol.analysis.repository.ChampJungleTierRepository;
 import com.lol.analysis.repository.ChampTopTierRepository;
 import com.lol.analysis.repository.ChampionRepository;
-import com.lol.analysis.repository.RuneLateRepository;
 
 
 
@@ -31,9 +31,6 @@ public class ChampsController {
 	
 	@Autowired
 	ChampJungleTierRepository cj;
-	
-	@Autowired
-	RuneLateRepository rl;
 	
 	@GetMapping("/list")
 	public String champs(Model model) {
@@ -50,6 +47,13 @@ public class ChampsController {
 	public String champDetail(Model model,ChampionDto CpDto,@PathVariable int code){
 		ChampionDto cpCode=cr.findByCode(CpDto.getCode());
 		model.addAttribute("cpCode", cpCode);
+		return "champs/champ_detail";
+	}
+	
+	@GetMapping("/detail/champ_name/{name}")
+	public String champDetailName(Model model,ChampionDto cpdto,@PathVariable String name) {
+		ChampionDto cpCode=cr.findByName(cpdto.getName());
+		model.addAttribute("cpCode",cpCode);
 		return "champs/champ_detail";
 	}
 	
