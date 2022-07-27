@@ -58,11 +58,6 @@ public class ChampionDto {
 	@JoinColumn(name = "code",insertable = false,updatable = false)
 	private SpellRateDto sldto;
 	
-
-	@OneToMany //fetch=FetchType.LAZY : default이다.
-	@JoinColumn(name="code", insertable=false, updatable=false)
-	private List<PredDetailVo> PredDetail;
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "code",insertable = false,updatable = false)
 	private SkillBuildRateDto sbdto;
@@ -70,6 +65,12 @@ public class ChampionDto {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "code",insertable = false,updatable = false)
 	private ItemRateDto irdto;
+	
+
+	@OneToMany //fetch=FetchType.LAZY : default이다.
+	@JoinColumn(name="code", insertable=false, updatable=false)
+	private List<PredDetailVo> PredDetail;
+	
 }
 
 

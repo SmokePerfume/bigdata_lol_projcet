@@ -31,9 +31,6 @@ public class ChampsController {
 	@Autowired
 	ChampJungleTierRepository cj;
 	
-	@Autowired
-	RuneLateRepository rl;
-	
 	@GetMapping("/list")
 	public String champs(Model model) {
 		Iterable<ChampionDto> cpList=cr.findAllByOrderByNameAsc();
@@ -46,11 +43,16 @@ public class ChampsController {
 	}
 
 	@GetMapping("/detail/champ_code/{code}")
-	public String champDetail(Model model,ChampionDto CpDto,ChampTopTierDto CtDto,ChampJungleTierDto CjDto,@PathVariable int code){
+	public String champDetail(Model model,ChampionDto CpDto,@PathVariable int code){
 		ChampionDto cpCode=cr.findByCode(CpDto.getCode());
 		model.addAttribute("cpCode", cpCode);
-		Iterable<RuneRateDto> rlcode=rl.findAll();
-		model.addAttribute("rlCode",rlcode);
+		return "champs/champ_detail";
+	}
+	
+	@GetMapping("/detail/champ_name/{name}")
+	public String champDetailName(Model model,ChampionDto cpdto,@PathVariable String name) {
+		ChampionDto cpCode=cr.findByName(cpdto.getName());
+		model.addAttribute("cpCode",cpCode);
 		return "champs/champ_detail";
 	}
 	
