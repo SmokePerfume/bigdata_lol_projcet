@@ -16,7 +16,6 @@ import com.lol.analysis.dto.RuneRateDto;
 import com.lol.analysis.repository.ChampJungleTierRepository;
 import com.lol.analysis.repository.ChampTopTierRepository;
 import com.lol.analysis.repository.ChampionRepository;
-import com.lol.analysis.repository.RuneLateRepository;
 
 
 
