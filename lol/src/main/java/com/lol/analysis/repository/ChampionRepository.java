@@ -22,4 +22,7 @@ public interface ChampionRepository extends CrudRepository<ChampionDto, String>{
 	@Query(nativeQuery=true,value="SELECT * FROM pred ORDER BY predno desc limit 1")
 	public List<PredVo> findLastPredTuple();
 	
+	@Query(nativeQuery = true,value = "select * from champion where name like concat ('%',?1,'%')")
+    public List<ChampionDto> findLikeName(String id);
+	
 }

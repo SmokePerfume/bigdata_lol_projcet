@@ -2,6 +2,8 @@ package com.lol.analysis.controller;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +41,7 @@ public class ChampsController {
 		model.addAttribute("ctList",ctList);
 		Iterable<ChampJungleTierDto> cjList=cj.findAllByOrderByTierAsc();
 		model.addAttribute("cjList",cjList);
+
 		return "champs/list";
 	}
 
@@ -53,8 +56,16 @@ public class ChampsController {
 	public String champDetailName(Model model,ChampionDto cpdto,@PathVariable String name) {
 		ChampionDto cpCode=cr.findByName(cpdto.getName());
 		model.addAttribute("cpCode",cpCode);
+		
+		List<ChampionDto> likeList=cr.findLikeName(name);
+		for(ChampionDto en:likeList) {
+			System.out.println(en.getName());
+		}
+		
 		return "champs/champ_detail";
 	}
+	
+	
 	
 }
 

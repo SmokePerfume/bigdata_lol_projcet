@@ -38,6 +38,65 @@
             <p>team : lol_manager</p>
     </footer>
 </body>
+<script type="text/javascript">
+
+	var ref = [{"champname":"애니"},{"champname":"올라프"},{"champname":"갈리오"},{"champname":"트위스티드 페이트"},{"champname":"신 짜오"},{"champname":"우르곳"},{"champname":"르블랑"},{"champname":"블라디미르"},{"champname":"피들스틱"},{"champname":"케일"},{"champname":"마스터 이"},{"champname":"알리스타"},{"champname":"라이즈"},{"champname":"사이온"},{"champname":"시비르"},{"champname":"소라카"},{"champname":"티모"},{"champname":"트리스타나"},{"champname":"워윅"},{"champname":"누누와 윌럼프"},{"champname":"미스 포츈"},{"champname":"애쉬"},{"champname":"트린다미어"},{"champname":"잭스"},{"champname":"모르가나"},{"champname":"질리언"},{"champname":"신지드"},{"champname":"이블린"},{"champname":"트위치"},{"champname":"카서스"},{"champname":"초가스"},{"champname":"아무무"},{"champname":"람머스"},{"champname":"애니비아"},{"champname":"샤코"},{"champname":"문도 박사"},{"champname":"소나"},{"champname":"카사딘"},{"champname":"이렐리아"},{"champname":"잔나"},{"champname":"갱플랭크"},{"champname":"코르키"},{"champname":"카르마"},{"champname":"타릭"},{"champname":"베이가"},{"champname":"트런들"},{"champname":"스웨인"},{"champname":"케이틀린"},{"champname":"블리츠크랭크"},{"champname":"말파이트"},{"champname":"카타리나"},{"champname":"녹턴"},{"champname":"마오카이"},{"champname":"레넥톤"},{"champname":"자르반 4세"},{"champname":"엘리스"},{"champname":"오리아나"},{"champname":"오공"},{"champname":"브랜드"},{"champname":"리 신"},{"champname":"베인"},{"champname":"럼블"},{"champname":"카시오페아"},{"champname":"스카너"},{"champname":"하이머딩거"},{"champname":"나서스"},{"champname":"니달리"},{"champname":"우디르"},{"champname":"뽀삐"},{"champname":"그라가스"},{"champname":"판테온"},{"champname":"이즈리얼"},{"champname":"모데카이저"},{"champname":"요릭"},{"champname":"아칼리"},{"champname":"케넨"},{"champname":"가렌"},{"champname":"레오나"},{"champname":"말자하"},{"champname":"탈론"},{"champname":"리븐"},{"champname":"코그모"},{"champname":"쉔"},{"champname":"럭스"},{"champname":"제라스"},{"champname":"쉬바나"},{"champname":"아리"},{"champname":"그레이브즈"},{"champname":"피즈"},{"champname":"볼리베어"},{"champname":"렝가"},{"champname":"바루스"},{"champname":"노틸러스"},{"champname":"빅토르"},{"champname":"세주아니"},{"champname":"피오라"},{"champname":"직스"},{"champname":"룰루"},{"champname":"드레이븐"},{"champname":"헤카림"},{"champname":"카직스"},{"champname":"다리우스"},{"champname":"제이스"},{"champname":"리산드라"},{"champname":"다이애나"},{"champname":"퀸"},{"champname":"신드라"},{"champname":"아우렐리온 솔"},{"champname":"케인"},{"champname":"조이"},{"champname":"자이라"},{"champname":"카이사"},{"champname":"세라핀"},{"champname":"나르"},{"champname":"자크"},{"champname":"야스오"},{"champname":"벨코즈"},{"champname":"탈리야"},{"champname":"카밀"},{"champname":"아크샨"},{"champname":"브라움"},{"champname":"진"},{"champname":"킨드레드"},{"champname":"징크스"},{"champname":"탐 켄치"},{"champname":"비에고"},{"champname":"세나"},{"champname":"루시안"},{"champname":"제드"},{"champname":"클레드"},{"champname":"에코"},{"champname":"키아나"},{"champname":"바이"},{"champname":"아트록스"},{"champname":"나미"},{"champname":"아지르"},{"champname":"유미"},{"champname":"사미라"},{"champname":"쓰레쉬"},{"champname":"일라오이"},{"champname":"렉사이"},{"champname":"아이번"},{"champname":"칼리스타"},{"champname":"바드"},{"champname":"라칸"},{"champname":"자야"},{"champname":"오른"},{"champname":"사일러스"},{"champname":"니코"},{"champname":"아펠리오스"},{"champname":"렐"},{"champname":"파이크"},{"champname":"벡스"},{"champname":"요네"},{"champname":"세트"},{"champname":"릴리아"},{"champname":"그웬"}];
+
+	let championname = []
+	for ( let i in ref) {
+		championname.push(ref[i].champname)
+	}
+
+	var isComplete = false; //autoMaker 자식이 선택 되었는지 여부
+	$('#search_area').keyup(
+			function() {
+				var txt = $(this).val();
+				if (txt != '') { //빈줄이 들어오면
+					$('#autoMaker').children().remove();
+
+					ref.forEach(function(arg) {
+						if (arg.champname.indexOf(txt) > -1) {
+							$('#autoMaker').append(
+									$('<div>').text(arg.champname).attr({
+										'key' : arg.key
+									}));
+						}
+					});
+					$('#autoMaker').children().each(function() {
+						$(this).click(function() {
+							$('#search_area').val($(this).text());
+							$('#autoMaker').children().remove();
+							$("#search_area").focus();
+							isComplete = true;
+						});
+					});
+				} else {
+					$('#autoMaker').children().remove();
+				}
+			});
+	$('#search_area').keydown(function(event) {
+		if (isComplete) { //autoMaker 자식이 선택 되었으면 초기화
+			$('#insert_target').val('')
+		}
+	})
+
+	
+	$("#search_champ").click(function() {
+		let champname = $("#search_area").val()
+
+		if (champname == "" || championname.indexOf(champname) == -1) {
+			alert("챔피언 이름을 한글로 알맞게 적어주세요.")
+			$("#search_area").focus();
+		} else {
+			location.href = "./champinfo?champname=" + champname;
+		}
+	})
+	$("input[type=text]").on('keyup', function(e)
+		{ if(e.key==='Enter'||e.keyCode===13){
+			$("#search_champ").trigger('click'); } })
+	
+	
+</script>
 </html>
 
 
