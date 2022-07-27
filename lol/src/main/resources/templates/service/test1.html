@@ -13,7 +13,7 @@ main{
 	display: flex;
 }
 .inputdata{
-	margin:10px !important;
+	margin:0px 0px 10px 0px !important;
 	padding : 5px;
 	border: 1px solid #000;
 	border-radius: 5px;
@@ -30,7 +30,11 @@ main{
 	padding : 5px;
 	border: 1px solid #000;
 	border-radius: 5px;
+}
+.resultdiv{
+	margin:10px !important;
 	width:800px;
+
 }
 /* @media (max-width:1050px) {
     main{
@@ -45,83 +49,86 @@ main{
 	<!-- 상단 메뉴바 -->
 	<header th:insert="header_nav.html"></header>
 	<main>	
-		<div class="inputdata container alert alert-light" style="max-width:500px;">
-			<form name="predictForm" action="/service/test1.do" method="post">
-			<h2 style="text-align: center;">입력 폼</h2>
-				<div class="input-team d-flex">
-					<div class="red-div d-flex flex-column">
-						<h2 style="color:red; text-align: center;">레드팀</h2>
-						<div class="signup-el">
-							<label for="reddata1">챔피언:</label>
-							<select id="reddata1" size="1" name="reddata1">
-								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
-							</select>
+		<div class="resultdiv">
+			<div class="inputdata container alert alert-light" style="max-width:500px; min-width:500px; height:100%;">
+				<form name="predictForm" action="/service/test1.do" method="post">
+				<h2 style="text-align: center;">입력 폼</h2>
+					<div class="input-team d-flex">
+						<div class="red-div d-flex flex-column">
+							<h2 style="color:red; text-align: center;">레드팀</h2>
+							<div class="signup-el">
+								<label for="reddata1">챔피언:</label>
+								<select id="reddata1" size="1" name="reddata1">
+									<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+								</select>
+							</div>
+							<div class="signup-el">
+								<label for="reddata2">챔피언:</label>
+								<select id="reddata2" size="1" name="reddata2">
+									<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+								</select>
+							</div>
+							<div class="signup-el">
+								<label for="reddata3">챔피언:</label>
+								<select id="reddata3" size="1" name="reddata3">
+									<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+								</select>
+							</div>
+							<div class="signup-el">
+								<label for="reddata4">챔피언:</label>
+								<select id="reddata4" size="1" name="reddata4">
+									<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+								</select>
+							</div>
+							<div class="signup-el">
+								<label for="reddata5">챔피언:</label>
+								<select id="reddata5" size="1" name="reddata5">
+									<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+								</select>
+							</div>
 						</div>
-						<div class="signup-el">
-							<label for="reddata2">챔피언:</label>
-							<select id="reddata2" size="1" name="reddata2">
-								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
-							</select>
-						</div>
-						<div class="signup-el">
-							<label for="reddata3">챔피언:</label>
-							<select id="reddata3" size="1" name="reddata3">
-								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
-							</select>
-						</div>
-						<div class="signup-el">
-							<label for="reddata4">챔피언:</label>
-							<select id="reddata4" size="1" name="reddata4">
-								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
-							</select>
-						</div>
-						<div class="signup-el">
-							<label for="reddata5">챔피언:</label>
-							<select id="reddata5" size="1" name="reddata5">
-								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
-							</select>
+						<div class="blue-div  d-flex flex-column">
+							<h2 style="color:blue; text-align: center;">블루팀</h2>
+							<div class="signup-el">
+								<label for="bluedata1">챔피언:</label>
+								<select id="bluedata1" size="1" name="bluedata1">
+									<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+								</select>
+							</div>
+							<div class="signup-el">
+								<label for="bluedata2">챔피언:</label>
+								<select id="bluedata2" size="1" name="bluedata2">
+									<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+								</select>
+							</div>
+							<div class="signup-el">
+								<label for="bluedata3">챔피언:</label>
+								<select id="bluedata3" size="1" name="bluedata3">
+									<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+								</select>
+							</div>
+							<div class="signup-el">
+								<label for="bluedata4">챔피언:</label>
+								<select id="bluedata4" size="1" name="bluedata4">
+									<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+								</select>
+							</div>
+							<div class="signup-el">
+								<label for="bluedata5">챔피언:</label>
+								<select id="bluedata5" size="1" name="bluedata5">
+									<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
+								</select>
+							</div>
 						</div>
 					</div>
-					<div class="blue-div  d-flex flex-column">
-						<h2 style="color:blue; text-align: center;">블루팀</h2>
-						<div class="signup-el">
-							<label for="bluedata1">챔피언:</label>
-							<select id="bluedata1" size="1" name="bluedata1">
-								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
-							</select>
-						</div>
-						<div class="signup-el">
-							<label for="bluedata2">챔피언:</label>
-							<select id="bluedata2" size="1" name="bluedata2">
-								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
-							</select>
-						</div>
-						<div class="signup-el">
-							<label for="bluedata3">챔피언:</label>
-							<select id="bluedata3" size="1" name="bluedata3">
-								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
-							</select>
-						</div>
-						<div class="signup-el">
-							<label for="bluedata4">챔피언:</label>
-							<select id="bluedata4" size="1" name="bluedata4">
-								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
-							</select>
-						</div>
-						<div class="signup-el">
-							<label for="bluedata5">챔피언:</label>
-							<select id="bluedata5" size="1" name="bluedata5">
-								<option th:each="ch:${chList}" th:value="${ch.code}" th:text="${ch.name}"></option>
-							</select>
-						</div>
+					<!-- 아래두 좀 변경 -->
+					<div class="group-btn d-flex justify-content-around">
+						<button id="predictBtn" class="btn btn-primary" type="submit">예측하기</button>
+						<button class="btn btn-primary" type="button" onclick="history.back()">뒤로가기</button>
 					</div>
-				</div>
-				<!-- 아래두 좀 변경 -->
-				<div class="group-btn d-flex justify-content-around">
-					<button id="predictBtn" class="btn btn-primary" type="submit">예측하기</button>
-					<button class="btn btn-primary" type="button" onclick="history.back()">뒤로가기</button>
-				</div>
-			</form>
+				</form>
+			</div>
+
 		</div>
 		<div class="resultGraph container alert alert-light d-flex">
 			<div class="d-flex flex-column" style="width:500px;">
@@ -134,7 +141,7 @@ main{
 			</div>	
 			<table class="table table-striped">
 				<thead>
-					<th colspan="2"class="table-danger" style="font-size:25px;">레드팀</th>
+					<th colspan="2" class="table-danger" style="font-size:25px;">레드팀</th>
 				</thead>
 				<tbody>
 					<tr th:each="chDto,chDtoStat:${chDtoList}" th:if="${chDtoStat.index}<5">
@@ -159,24 +166,45 @@ main{
 				</tbody>
 			</table>		
 		</div>
-		<div class="resultGraph container alert alert-light d-flex">
-			<p>최근 예측 이력</p>
-<!-- 			<table class="table">
+	</main>
+	<footer>
+		<div class="resultGraph container alert alert-light d-flex flex-column">
+			<h3>최근 예측 이력</h3>
+			<div class="d-flex justify-content-around">
+				<div>
+				아이디 : <p th:text="${prePred.id}"></p>
+				</div>
+				<div>
+				날짜 : <p th:text="${prePred.regdate}"></p>
+				</div>
+				<div>
+				예측값 : <p th:text="${prePred.result}"></p>
+				</div>
+			</div>
+ 			<table class="table">
 				<thead>
 					<tr>
 						<th>id</th>
 						<th>챔피언</th>
+						<th>챔피언</th>
+						<th>챔피언</th>
+						<th>챔피언</th>
+						<th>챔피언</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="entitis:${EntitisList}">
-						<td th:text="${entitis[0].id}"></td>
-						<td th:text="${entitis[2].name}"></td>
+					<tr class="table-danger">
+						<td>레드팀</td>
+						<td th:each="entitis, index:${prePred.PredDetail}" th:if="${index.index}>4" th:text="${entitis.champion?.Name}"></td>
+					</tr>
+					<tr class="table-primary">
+						<td>블루팀</td>
+						<td th:each="entitis, index:${prePred.PredDetail}" th:unless="${index.index}>4" th:text="${entitis.champion?.Name}"></td>
 					</tr>		
 				</tbody>
-			</table> -->
+			</table>
 		</div>
-	</main>
+	</footer>
 </body>
 <script th:inline="javascript">
 /*<![CDATA[*/

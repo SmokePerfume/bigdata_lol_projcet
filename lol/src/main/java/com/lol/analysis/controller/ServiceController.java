@@ -34,7 +34,6 @@ import com.lol.analysis.repository.ChampionRepository;
 import com.lol.analysis.repository.MemberRepository;
 import com.lol.analysis.repository.PredDetailRepository;
 import com.lol.analysis.repository.PredRepository;
-import com.lol.analysis.vo.JoinQueryBean;
 import com.lol.analysis.vo.MemGenderCntVo;
 import com.lol.analysis.vo.MemberVo;
 import com.lol.analysis.vo.PredDetailVo;
@@ -61,12 +60,13 @@ public class ServiceController {
 	public String case1(Model model, HttpSession session){
 	    MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
 		Iterable<ChampionDto> chList=cr.findAllByOrderByNameAsc();
-		List<PredVo> Entitis_list = pr.findAllWithPredDetailWithChampion(memberVo.getId());
+		PredVo prePred = pr.findAllWithPredDetailWithChampion(memberVo.getId()).get(0);
 		model.addAttribute("chList", chList);
-		for(PredVo Entits:Entitis_list) {
-			for(PredDetailVo Ent:Entits.getPredDetail())
-				System.out.println(Ent.getTeam()+" : "+Ent.getChampion().getName());
-		}
+		model.addAttribute("prePred", prePred);
+//		for(PredVo Entits:Entitis_list) {
+//			for(PredDetailVo Ent:Entits.getPredDetail())
+//				System.out.println(Ent.getTeam()+" : "+Ent.getChampion().getName());
+//		}
 		return "service/test1";
 	}
 	
