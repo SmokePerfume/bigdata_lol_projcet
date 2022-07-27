@@ -120,8 +120,10 @@ public class ServiceController {
 		
 		try {
 			predresult=execPython(command); 
-			//predresult="sasad0.4545568791";	//개인환경 테스트용
-			predresult=predresult.substring(predresult.length()-12);
+			//predresult="sasad결과물: 0.4545568791";	//개인환경 테스트용
+			//predresult="sasad결과물: 4.6706563e-07";
+
+			predresult=predresult.substring(predresult.indexOf("결과물:")+5,predresult.length());
 			PredVo predVo=new PredVo();
 		    predVo.setId(memberVo.getId());
 		    predVo.setResult(Float.parseFloat(predresult));
@@ -139,6 +141,13 @@ public class ServiceController {
 		    }
 		    
 			rttr.addFlashAttribute("predresult", predresult);
+			if(predresult.contains("e-")) {
+				rttr.addFlashAttribute("resultsub", "0");
+			}else if(predresult.contains("e+")) {
+				rttr.addFlashAttribute("resultsub", "99");
+			}else {
+				rttr.addFlashAttribute("resultsub", predresult.substring(2,4));
+			}
 			rttr.addFlashAttribute("chDtoList", chDtoList);
 			
 		} catch (Exception e) {

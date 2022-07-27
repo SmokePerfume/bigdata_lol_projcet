@@ -25,7 +25,7 @@ def win_pred(blue1,blue2,blue3,blue4,blue5,red1,red2,red3,red4,red5):
 	  	    elif i.split('_')[0]=='red':
 	  	    	if i.split('_')[1]==f'{j}':
 	  	    		x[f'red_{j}']=1
-	print("결과물 : ",loaded_model1.predict(x, verbose=0)[0][0])
+	print("결과물:",loaded_model1.predict(x, verbose=0)[0][0])
 
 def main(argv):
     win_pred(argv[1], argv[2],argv[3],argv[4],argv[5],argv[6],argv[7],argv[8],argv[9],argv[10])
