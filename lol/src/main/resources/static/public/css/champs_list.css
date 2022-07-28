@@ -29,11 +29,19 @@ h1 {
 
 #search_title {
 	display: flex;
-	justify-content: space-evenly;
+	width: auto;
 	align-items: center;
 }
 
-#search_champ > input {
+#search_champs {
+	margin-left: 50px;
+}
+
+#search_championB {
+	margin-left: -6px;
+}
+
+#search_champs > input {
 	width: 200px;
 }
 
