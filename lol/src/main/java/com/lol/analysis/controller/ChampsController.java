@@ -52,6 +52,7 @@ public class ChampsController {
 		return "champs/champ_detail";
 	}
 	
+	
 	@GetMapping("/detail/champ_name/{name}")
 	public String champDetailName(Model model,ChampionDto cpdto,@PathVariable String name) {
 		ChampionDto cpCode=cr.findByName(cpdto.getName());
@@ -61,7 +62,6 @@ public class ChampsController {
 		for(ChampionDto en:likeList) {
 			System.out.println(en.getName());
 		}
-		
 		return "champs/champ_detail";
 	}
 	
