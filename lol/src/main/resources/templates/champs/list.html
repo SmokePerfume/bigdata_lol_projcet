@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<script src="/public/js/champ_list_search.js" defer="defer"></script>
 <link href="/public/css/champs_list.css" rel="stylesheet">
 <link rel="icon" href="/public/img/favicon.png" type="image/x-icon">
 <title>Champion List</title>
@@ -17,8 +18,9 @@
 			<div id="search_h1">
 				<h1>CHAMPION LIST</h1>
 			</div>
-			<div id="search_champ">
-				<input type="text" placeholder="챔피언 검색(가렌, ㄱㄹ, ...)">
+			<div id="search_champs">
+				<input id="search_champion" type="text" placeholder="챔피언 검색(가렌, ㄱㄹ, ...)" spellcheck="false" autocomplete="off">
+				<button id="search_championB" type="button"><i class="bi bi-search"></i></button>
 			</div>
 		</div>
 		<nav id="search_detail">
@@ -106,8 +108,62 @@
 		  		</tbody>
 		  	</table>
 		  </div>
-		  <div class="tab-pane fade" id="middle" role="tabpanel" aria-labelledby="middle-tab">CCC</div>
-		  <div class="tab-pane fade" id="bottom" role="tabpanel" aria-labelledby="bottom-tab">DDD</div>
+		  <div class="tab-pane fade" id="middle" role="tabpanel" aria-labelledby="middle-tab">
+		  	<table class="table">
+		  		<thead>
+		  			<tr>
+		  				<th>챔피언</th>
+		  				<th>승률</th>
+		  				<th>픽률</th>
+		  				<th>밴률</th>
+		  				<th>티어</th>
+		  			</tr>
+		  		</thead>
+		  		<tbody>
+		  			<tr class="cl" th:each="cm:${cmList}">
+		  				<td class="td1">
+		  					<a th:href="@{/champs/detail/champ_code/{code}(code = ${cm.code})}">
+		  						<input type="hidden" th:value="${cm.code}">
+		  						<img th:alt="${cm.name}" th:src="${cm.cpdto?.cImg}">
+		  						<span th:text="${cm.name}"></span>
+		  					</a>
+		  				</td>
+		  				<td><span th:text="${cm.winRate}"></span></td>
+		  				<td><span th:text="${cm.pickRate}"></span></td>
+		  				<td><span th:text="${cm.banRate}"></span></td>
+		  				<td><img th:src="${cm.tier}"></td>
+		  			</tr>
+		  		</tbody>
+		  	</table>
+		  </div>
+		  <div class="tab-pane fade" id="bottom" role="tabpanel" aria-labelledby="bottom-tab">
+		  	<table class="table">
+		  		<thead>
+		  			<tr>
+		  				<th>챔피언</th>
+		  				<th>승률</th>
+		  				<th>픽률</th>
+		  				<th>밴률</th>
+		  				<th>티어</th>
+		  			</tr>
+		  		</thead>
+		  		<tbody>
+		  			<tr class="cl" th:each="cb:${cbList}">
+		  				<td class="td1">
+		  					<a th:href="@{/champs/detail/champ_code/{code}(code = ${cb.code})}">
+		  						<input type="hidden" th:value="${cb.code}">
+		  						<img th:alt="${cb.name}" th:src="${cb.cpdto?.cImg}">
+		  						<span th:text="${cb.name}"></span>
+		  					</a>
+		  				</td>
+		  				<td><span th:text="${cb.winRate}"></span></td>
+		  				<td><span th:text="${cb.pickRate}"></span></td>
+		  				<td><span th:text="${cb.banRate}"></span></td>
+		  				<td><img th:src="${cb.tier}"></td>
+		  			</tr>
+		  		</tbody>
+		  	</table>
+		  </div>
 		  <div class="tab-pane fade" id="support" role="tabpanel" aria-labelledby="support-tab">EEE</div>
 		</div>
 	</div>
